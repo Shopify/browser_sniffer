@@ -37,10 +37,10 @@ client_info.os_version            # => 3.2
 
 Fork, branch & pull request.
 
-## Licenses
+## Licensing
 
 Based off [UAParser.js](https://github.com/faisalman/ua-parser-js)
 
-Copyright (c) 2013 Shopify
-Copyright (c) 2012-2013 Faisalman <fyzlman@gmail.com>
+Copyright (c) 2013 Shopify  
+Copyright (c) 2012-2013 Faisalman <fyzlman@gmail.com>  
 Dual licensed under GPLv2 & MIT
