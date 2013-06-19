@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BrowserSnifferTest < ActiveSupport::TestCase
+class BrowserSnifferTest < MiniTest::Unit::TestCase
   AGENTS = {
     :ipad_old => {
       :user_agent => "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10",
@@ -395,9 +395,9 @@ class BrowserSnifferTest < ActiveSupport::TestCase
   }
 
   AGENTS.each do |agent, attributes|
-    test "sniff #{agent} correctly" do
+    define_method "test_sniff_#{agent}_corrently" do
       sniffer = BrowserSniffer.new(attributes[:user_agent])
-      attributes.except(:user_agent).each do |attribute, value|
+      attributes.reject{|attr| attr == :user_agent}.each do |attribute, value|
         assert_equal value, sniffer.send(attribute), "#{attribute.to_s} did not match"
       end
     end
