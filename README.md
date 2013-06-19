@@ -26,8 +26,11 @@ require "browser_sniffer"
 client_info = BrowserSniffer.new(request.user_agent)
 client_info.form_factor           # => :tablet
 client_info.browser               # => :safari
-client_info.engine                # => :webkit
 client_info.major_browser_version # => 4
+client_info.engine                # => :webkit
+client_info.major_engine_version  # => 531
+client_info.os                    # => :ios
+client_info.os_version            # => 3.2
 ```
 
 ## Contributing
