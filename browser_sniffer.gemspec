@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.description = readme.description
   spec.summary = readme.summary
   spec.homepage = "https://github.com/Shopify/browser_sniffer"
-  spec.license = "GPLv2 & MIT"
+  spec.licenses = %W[GPLv2 MIT]
 
   spec.files = files
   spec.executables = files.executables
