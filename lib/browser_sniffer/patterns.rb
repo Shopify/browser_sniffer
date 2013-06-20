@@ -136,7 +136,7 @@ class BrowserSniffer
         /(htc)[;_\s-]+([\w\s_]+(?=\))|\w+)*/i, # HTC
         /(zte)-(\w+)*/i, # ZTE
         /(alcatel|geeksphone|huawei|lenovo|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]+)*/i # Alcatel/GeeksPhone/Huawei/Lenovo/Nexian/Panasonic/Sony
-      ], [:vendor, [:model, lambda {|str| str.gsub(/_/, ' ') }], [:type, :handheld]], [
+      ], [:vendor, [:model, lambda {|str| str && str.gsub(/_/, ' ') }], [:type, :handheld]], [
         /\s((milestone|droid[2x]?))[globa\s]*\sbuild\//i, # Motorola
         /(mot)[\s-]?(\w+)*/i
       ], [[:vendor, 'Motorola'], :model, [:type, :handheld]], [
@@ -226,9 +226,9 @@ class BrowserSniffer
         /\s([frentopc-]{0,4}bsd|dragonfly)\s?([\w\.]+)*/i # FreeBSD/NetBSD/OpenBSD/PC-BSD/DragonFly
       ], [:name, :version],[
         /(ip[honead]+)(?:.*os\s*([\w]+)*\slike\smac|;\sopera)/i # iOS
-      ], [[:name, 'iOS'], [:version, lambda {|str| str.gsub(/_/, '.') }], [:type, :ios]], [
+      ], [[:name, 'iOS'], [:version, lambda {|str| str && str.gsub(/_/, '.') }], [:type, :ios]], [
         /(mac\sos\sx)\s?([\w\s\.]+\w)*/i # Mac OS
-      ], [:name, [:version, lambda {|str| str.gsub(/_/, '.') }], [:type, :mac]], [
+      ], [:name, [:version, lambda {|str| str && str.gsub(/_/, '.') }], [:type, :mac]], [
         # Other
         /(haiku)\s(\w+)/i, # Haiku
         /(aix)\s((\d)(?=\.|\)|\s)[\w\.]*)*/i, # AIX
