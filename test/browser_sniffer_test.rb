@@ -391,6 +391,19 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :os_version => '5.0',
       :browser => :safari,
       :major_browser_version => 5
+    },
+    :excel_mac => {
+      :user_agent => "Mozilla/5.0 (Macintosh; Intel Mac OS X) Excel/14.34.0",
+      :form_factor => :desktop,
+      :ios? => false,
+      :android? => false,
+      :desktop? => true,
+      :engine => nil,
+      :major_engine_version => nil,
+      :os => :mac,
+      :os_version => nil,
+      :browser => nil,
+      :major_browser_version => nil
     }
   }
 
