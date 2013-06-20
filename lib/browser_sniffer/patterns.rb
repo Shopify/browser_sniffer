@@ -96,7 +96,7 @@ class BrowserSniffer
         /(mozilla)\/((\d+)?[\w\.]+).+rv\:.+gecko\/\d+/i, # Mozilla
       ], [:name, :version, :major, [:type, :firefox]], [
         # Other
-        /(uc\s?browser|polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf)[\/\s]?((\d+)?[\w\.]+)/i, # UCBrowser/Polaris/Lynx/Dillo/iCab/Doris/Amaya/w3m/NetSurf
+        /(uc\s?browser|polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf|word|excel)[\/\s]?((\d+)?[\w\.]+)/i, # UCBrowser/Polaris/Lynx/Dillo/iCab/Doris/Amaya/w3m/NetSurf/Word/Excel
         /(links)\s\(((\d+)?[\w\.]+)/i, # Links
         /(gobrowser)\/?((\d+)?[\w\.]+)*/i, # GoBrowser
         /(ice\s?browser)\/v?((\d+)?[\w\._]+)/i, # ICE Browser

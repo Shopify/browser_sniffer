@@ -130,6 +130,7 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :os => :linux,
       :os_version => '2.6.22',
       :browser => nil,
+      :browser_name => 'Kindle',
       :major_browser_version => 2
     },
     :nokia_classic => {
@@ -351,6 +352,7 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :os => :ios,
       :os_version => '4.3.3',
       :browser => nil,
+      :browser_name => 'WebKit',
       :major_browser_version => 533
     },
     :ipod_os_4_3_3 => {
@@ -403,7 +405,8 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :os => :mac,
       :os_version => nil,
       :browser => nil,
-      :major_browser_version => nil
+      :browser_name => 'Excel',
+      :major_browser_version => 14
     }
   }
 
