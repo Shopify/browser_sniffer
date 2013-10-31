@@ -43,7 +43,7 @@ class Files < Array
 end
 
 def files
-  @files ||= Files.new(`git ls-files`.split($/))
+  (@files ||= {})[Dir.pwd] ||= Files.new(`git ls-files`.split($/))
 end
 
 def readme(path = File.expand_path("./README.md"))
