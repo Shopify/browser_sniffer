@@ -28,24 +28,6 @@ class Readme < String
     end
 end
 
-class Files < Array
-  def executables
-    grep(%r{^bin/}) { |f| File.basename(f) }
-  end
-
-  def requires
-    ["lib"]
-  end
-
-  def tests
-    grep(%r{^(test|spec|features)/})
-  end
-end
-
-def files
-  (@files ||= {})[Dir.pwd] ||= Files.new(`git ls-files`.split($/))
-end
-
 def readme(path = File.expand_path("./README.md"))
   (@readmes ||= {})[path] ||= Readme.new(path)
 end
