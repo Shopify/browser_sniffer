@@ -381,6 +381,20 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :browser => :safari,
       :major_browser_version => 5
     },
+    :iphone_ios7_webview => {
+      :user_agent => "Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/11A465",
+      :form_factor => :handheld,
+      :ios? => true,
+      :android? => false,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 537,
+      :os => :ios,
+      :os_version => '7.0',
+      :browser => :safari,
+      :browser_name => 'Mobile Safari',
+      :major_browser_version => 537
+    },
     :ipad_ios5 => {
       :user_agent => "Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3",
       :form_factor => :tablet,
@@ -411,11 +425,12 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
   }
 
   AGENTS.each do |agent, attributes|
-    define_method "test_sniff_#{agent}_corrently" do
+    define_method "test_sniff_#{agent}_correctly" do
       sniffer = BrowserSniffer.new(attributes[:user_agent])
       attributes.reject{|attr| attr == :user_agent}.each do |attribute, value|
         assert_equal value, sniffer.send(attribute), "#{attribute.to_s} did not match"
       end
     end
   end
+
 end

@@ -78,6 +78,8 @@ class BrowserSniffer
       ], [[:name, 'Chrome'], :version, :major, [:type, :chrome]], [
         /version\/((\d+)?[\w\.]+).+?mobile\/\w+\s(safari)/i # Mobile Safari
       ], [:version, :major, [:name, 'Mobile Safari'], [:type, :safari]], [
+        /Mozilla\/5.0 \(iPhone;(.*)AppleWebKit\/((\d+)?[\w\.]+).+?(mobile)\/\w?/i # ios webview
+      ], [:version, :major, [:name, 'Mobile Safari'], [:type, :safari]], [
         /version\/((\d+)?[\w\.]+).+?(mobile\s?safari|safari)/i # Safari & Safari Mobile
       ], [:version, :major, :name, [:type, :safari]], [
         /webkit.+?(mobile\s?safari|safari)((\/[\w]+))/i # Safari < 3.0
