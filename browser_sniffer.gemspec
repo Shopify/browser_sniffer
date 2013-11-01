@@ -5,8 +5,8 @@ Gem::Specification.new do |spec|
   spec.version = BrowserSniffer::VERSION
   spec.authors = ["Shopify"]
   spec.email = ["gems@shopify.com"]
-  spec.description = readme.description
-  spec.summary = readme.summary
+  spec.description = "Parses user agent strings and boils it all down to a few simple classifications."
+  spec.summary = "Parses user agent strings and boils it all down to a few simple classifications."
   spec.homepage = "https://github.com/Shopify/browser_sniffer"
   spec.licenses = %W[GPLv2 MIT]
 
