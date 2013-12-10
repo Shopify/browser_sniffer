@@ -421,6 +421,32 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :browser => nil,
       :browser_name => 'Excel',
       :major_browser_version => 14
+    },
+    :win7_ie11 => {
+      :user_agent => "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko",
+      :form_factor => :desktop,
+      :ios? => false,
+      :android? => false,
+      :desktop? => true,
+      :engine => :trident,
+      :major_engine_version => 7,
+      :os => :windows,
+      :os_version => "7",
+      :browser => :ie,
+      :major_browser_version => 11
+    },
+    :win8_ie11 => {
+      :user_agent => "Mozilla/5.0 (Windows NT 6.2; Trident/7.0; rv:11.0) like Gecko",
+      :form_factor => :desktop,
+      :ios? => false,
+      :android? => false,
+      :desktop? => true,
+      :engine => :trident,
+      :major_engine_version => 7,
+      :os => :windows,
+      :os_version => "8",
+      :browser => :ie,
+      :major_browser_version => 11
     }
   }
 

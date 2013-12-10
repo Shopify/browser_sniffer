@@ -20,6 +20,10 @@ class BrowserSniffer
     browser == :ie && major_browser_version == 8
   end
 
+  def ie11?
+    browser == :ie && major_browser_version == 11
+  end
+
   def handheld?
     form_factor == :handheld
   end
@@ -134,7 +138,7 @@ class BrowserSniffer
                 result[field[0]] = field[1]
               elsif field[1].class == Hash
                 if field[1][match[index + 1]]
-                  result[field[0]] = field[1][match[index + 1]] 
+                  result[field[0]] = field[1][match[index + 1]]
                 else
                   result[field[0]] = match[index + 1]
                 end
