@@ -450,6 +450,20 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :os_version => "8",
       :browser => :ie,
       :major_browser_version => 11
+    },
+    :win8_1_ie11 => {
+      :user_agent => "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko",
+      :form_factor => :desktop,
+      :ios? => false,
+      :ie11? => true,
+      :android? => false,
+      :desktop? => true,
+      :engine => :trident,
+      :major_engine_version => 7,
+      :os => :windows,
+      :os_version => "8.1",
+      :browser => :ie,
+      :major_browser_version => 11
     }
   }
 
