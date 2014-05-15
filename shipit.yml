@@ -1,3 +1,11 @@
 deploy:
   override:
-    - rake release
+    - VERSION=`bundle exec rake build | cut -d" " -f2`
+    - >
+      if [ "`git tag | grep v$VERSION`" = "" ]; then
+        echo "No tag exist on github for v$VERSION.";
+        echo "Add one with:";
+        echo "  git tag -a -m \"Version $VERSION\" v$VERSION";
+        exit 1;
+      fi
+    - bundle exec rake release
