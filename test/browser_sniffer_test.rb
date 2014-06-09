@@ -464,6 +464,48 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :os_version => "8.1",
       :browser => :ie,
       :major_browser_version => 11
+    },
+    :nexus10 => {
+      :user_agent => "Mozilla/5.0 (Linux; Android 4.2; Nexus 10 Build/JOP19B) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19",
+      :form_factor => :tablet,
+      :ios? => false,
+      :ie11? => false,
+      :android? => true,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 535,
+      :os => :android,
+      :os_version => "4.2",
+      :browser => :chrome,
+      :major_browser_version => 18
+    },
+    :nexus7 => {
+      :user_agent => "Mozilla/5.0 (Linux; Android 4.2; Nexus 7 Build/JOP40C) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19",
+      :form_factor => :tablet,
+      :ios? => false,
+      :ie11? => false,
+      :android? => true,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 535,
+      :os => :android,
+      :os_version => "4.2",
+      :browser => :chrome,
+      :major_browser_version => 18
+    },
+    :nexus5 => {
+      :user_agent => "Mozilla/5.0 (Linux; Android 4.4.3; Nexus 5 Build/KTU84M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.141 Mobile Safari/537.36",
+      :form_factor => :handheld,
+      :ios? => false,
+      :ie11? => false,
+      :android? => true,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 537,
+      :os => :android,
+      :os_version => "4.4.3",
+      :browser => :chrome,
+      :major_browser_version => 35
     }
   }
 
