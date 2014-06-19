@@ -1,1 +1,0 @@
-require 'browser_sniffer'
