@@ -5,10 +5,6 @@ layout: index
 [![Build Status](https://secure.travis-ci.org/Shopify/browser_sniffer.png?branch=master)](http://travis-ci.org/Shopify/browser_sniffer)
 [![Gem Version](https://badge.fury.io/rb/browser_sniffer.png)](http://badge.fury.io/rb/browser_sniffer)
 
-# BrowserSniffer
-
-## Description
-
 Parses user agent strings and boils it all down to a few simple classifications.
 
 ## Installation
@@ -27,24 +23,23 @@ Or install it yourself as:
 
 ## Usage
 
-```ruby
-require "browser_sniffer"
+	ruby
+	require "browser_sniffer"
 
-client_info = BrowserSniffer.new(request.user_agent)
-client_info.form_factor           # => :tablet
-client_info.browser               # => :safari
-client_info.major_browser_version # => 4
-client_info.engine                # => :webkit
-client_info.major_engine_version  # => 531
-client_info.os                    # => :ios
-client_info.os_version            # => 3.2
-```
+	client_info = BrowserSniffer.new(request.user_agent)
+	client_info.form_factor           # => :tablet
+	client_info.browser               # => :safari
+	client_info.major_browser_version # => 4
+	client_info.engine                # => :webkit
+	client_info.major_engine_version  # => 531
+	client_info.os                    # => :ios
+	client_info.os_version            # => 3.2
 
 ## Contributing
 
 Fork, branch & pull request.
 
-## Licensing
+## License
 
 Based off [UAParser.js](https://github.com/faisalman/ua-parser-js)
 
