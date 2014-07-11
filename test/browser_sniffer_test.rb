@@ -67,6 +67,32 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :browser => :safari,
       :major_browser_version => 3
     },
+    :ipod_touch_ios4 => {
+      :user_agent => "Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-jp) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5",
+      :form_factor => :handheld,
+      :ios? => true,
+      :android? => false,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 533,
+      :os => :ios,
+      :os_version => '4.3.3',
+      :browser => :safari,
+      :major_browser_version => 5
+    },
+    :ipod_touch_ios7 => {
+      :user_agent => "Mozilla/5.0 (iPod touch; CPU iPhone OS 7_0_4 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11B554a Safari/9537.53",
+      :form_factor => :handheld,
+      :ios? => true,
+      :android? => false,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 537,
+      :os => :ios,
+      :os_version => '7.0.4',
+      :browser => :safari,
+      :major_browser_version => 7
+    },
     :nexus_one => {
       :user_agent => "Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
       :form_factor => :handheld,
@@ -351,8 +377,8 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :major_engine_version => 533,
       :os => :ios,
       :os_version => '4.3.3',
-      :browser => nil,
-      :browser_name => 'WebKit',
+      :browser => :safari,
+      :browser_name => 'Mobile Safari',
       :major_browser_version => 533
     },
     :ipod_os_4_3_3 => {
