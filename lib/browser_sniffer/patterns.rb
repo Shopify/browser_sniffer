@@ -81,7 +81,7 @@ class BrowserSniffer
       ], [[:name, 'Chrome'], :version, :major, [:type, :chrome]], [
         /version\/((\d+)?[\w\.]+).+?mobile\/\w+\s(safari)/i # Mobile Safari
       ], [:version, :major, [:name, 'Mobile Safari'], [:type, :safari]], [
-        /Mozilla\/5.0 \(iPhone;(.*)AppleWebKit\/((\d+)?[\w\.]+).+?(mobile)\/\w?/i # ios webview
+        /Mozilla\/5.0 \((?:iPhone|iPod(?: Touch)?);(.*)AppleWebKit\/((\d+)?[\w\.]+).+?(mobile)\/\w?/i # ios webview
       ], [:version, :major, [:name, 'Mobile Safari'], [:type, :safari]], [
         /version\/((\d+)?[\w\.]+).+?(mobile\s?safari|safari)/i # Safari & Safari Mobile
       ], [:version, :major, :name, [:type, :safari]], [
@@ -119,7 +119,7 @@ class BrowserSniffer
         /\s(nook)[\w\s]+build\/(\w+)/i, # Nook
         /(dell)\s(strea[kpr\s\d]*[\dko])/i # Dell Streak
       ], [:vendor, :model, [:type, :tablet]], [
-        /\((ip[honed]+);.+(apple)/i # iPod/iPhone
+        /\((?:iphone|ipod(?: touch)?);.+(apple)/i # iPod Touch/iPhone
       ], [:model, :vendor, [:name, :iphone], [:type, :handheld]], [
         /(blackberry)[\s-]?(\w+)/i, # BlackBerry
         /(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|huawei|meizu|motorola)[\s_-]?([\w-]+)*/i, # BenQ/Palm/Sony-Ericsson/Acer/Asus/Dell/Huawei/Meizu/Motorola
