@@ -1,3 +1,7 @@
+# This list is alphabetized. Strings used are either full or short names of particular devices (e.g. bb_8830 for
+# BlackBerry 8830) or they are "browser_os" (e.g. "firefox_linux", "safari_mac"). Please keep to that format when adding new
+# user-agent strings to test for.
+
 require 'test_helper'
 
 class BrowserSnifferTest < MiniTest::Unit::TestCase
