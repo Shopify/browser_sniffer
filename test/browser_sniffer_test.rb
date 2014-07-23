@@ -16,7 +16,7 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :os_version => nil,
       :browser => :opera,
       :major_browser_version => 9
-    }
+    },
     :bb_8830 => {
       :user_agent => "BlackBerry8330/4.3.0 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/105",
       :form_factor => :handheld,
@@ -109,7 +109,7 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :browser => nil,
       :browser_name => 'Excel',
       :major_browser_version => 14
-    
+    },
     :firefox_linux => {
       :user_agent => "Mozilla/5.0 (X11; U; Linux x86_64; de; rv:1.9.2.8) Gecko/20100723 Ubuntu/10.04 (lucid) Firefox/3.6.8",
       :form_factor => :desktop,
@@ -146,19 +146,6 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :major_engine_version => 533,
       :os => :android,
       :os_version => '2.2',
-      :browser => :safari,
-      :major_browser_version => 4
-    },
-    :ipad_old => {
-      :user_agent => "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10",
-      :form_factor => :tablet,
-      :ios? => true,
-      :android? => false,
-      :desktop? => false,
-      :engine => :webkit,
-      :major_engine_version => 531,
-      :os => :ios,
-      :os_version => '3.2',
       :browser => :safari,
       :major_browser_version => 4
     },
@@ -200,6 +187,19 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :os_version => 'XP',
       :browser => :ie,
       :major_browser_version => 7
+    },
+    :ipad_old => {
+      :user_agent => "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10",
+      :form_factor => :tablet,
+      :ios? => true,
+      :android? => false,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 531,
+      :os => :ios,
+      :os_version => '3.2',
+      :browser => :safari,
+      :major_browser_version => 4
     },
     :ipad_new => {
       :user_agent => "Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10",
@@ -277,6 +277,19 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :major_engine_version => 534,
       :os => :ios,
       :os_version => '5.0',
+      :browser => :safari,
+      :major_browser_version => 5
+    },
+    :ipod_os_4_3_3 => {
+      :user_agent => "Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5",
+      :form_factor => :handheld,
+      :ios? => true,
+      :android? => false,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 533,
+      :os => :ios,
+      :os_version => '4.3.3',
       :browser => :safari,
       :major_browser_version => 5
     },
@@ -437,19 +450,6 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :os_version => 'Wii',
       :browser => :opera,
       :major_browser_version => 9
-    },
-    :ipod_os_4_3_3 => {
-      :user_agent => "Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5",
-      :form_factor => :handheld,
-      :ios? => true,
-      :android? => false,
-      :desktop? => false,
-      :engine => :webkit,
-      :major_engine_version => 533,
-      :os => :ios,
-      :os_version => '4.3.3',
-      :browser => :safari,
-      :major_browser_version => 5
     },
     :win7_ie11 => {
       :user_agent => "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko",
