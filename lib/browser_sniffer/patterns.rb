@@ -128,7 +128,7 @@ class BrowserSniffer
       ], [:vendor, :model, [:type, :handheld]], [
         /\((bb10);\s(\w+)/i # BlackBerry 10
       ], [[:vendor, 'BlackBerry'], :model, [:type, :handheld]], [
-        /android.+((transfo[prime\s]{4,10}\s\w+|eeepc|slider\s\w+))/i # Asus Tablets
+        /android.+((transfo[prime\s]{4,10}\s\w+|eeepc|slider\s\w+|nexus\s7))/i # Asus Tablets
       ], [[:vendor, 'Asus'], :model, [:type, :tablet]], [
         /(sony)\s(tablet\s[ps])/i # Sony Tablets
       ], [:vendor, :model, [:type, :tablet]], [
@@ -147,7 +147,7 @@ class BrowserSniffer
       ], [[:vendor, 'Motorola'], :model, [:type, :handheld]], [
         /android.+\s((mz60\d|xoom[\s2]{0,2}))\sbuild\//i
       ], [[:vendor, 'Motorola'], :model, [:type, :tablet]], [
-        /android.+((sch-i[89]0\d|shw-m380s|gt-p\d{4}|gt-n8000|sgh-t8[56]9))/i
+        /android.+((sch-i[89]0\d|shw-m380s|gt-p\d{4}|gt-n8000|sgh-t8[56]9|nexus\s10))/i
       ], [[:vendor, 'Samsung'], :model, [:type, :tablet]], [
         # Samsung
         /((s[cgp]h-\w+|gt-\w+|galaxy\snexus))/i,
@@ -163,7 +163,7 @@ class BrowserSniffer
       ], [[:vendor, 'Acer'], :model, [:type, :tablet]], [
         /android\s3\.[-\s\w;]{10}(lg?)-([06cv9]{3,4})/i # LG
       ], [[:vendor, 'LG'], :model, [:type, :tablet]], [
-        /((nexus\s4))/i,
+        /((nexus\s[45]))/i,
         /(lg)[-e;\s\/]+(\w+)*/i
       ], [[:vendor, 'LG'], :model, [:type, :handheld]], [
         /opera\smobi/i,
