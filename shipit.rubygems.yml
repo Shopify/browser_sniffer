@@ -1,1 +1,2 @@
-# using the default shipit config
+fetch:
+  - fetch-gem-version browser_sniffer Shopify/browser_sniffer
