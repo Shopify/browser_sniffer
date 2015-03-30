@@ -110,6 +110,12 @@ class BrowserSniffer
     ],
     :device => [
       [
+        /Nexus\s7/i,
+      ], [[:vendor, 'Asus'], [:model, 'Nexus 7'], [:type, :tablet]],
+      [
+        /Nexus\s9/i,
+      ], [[:vendor, 'HTC'], [:model, 'Nexus 9'], [:type, :tablet]],
+      [
         /\((playbook);[\w\s\);-]+(rim)/i # PlayBook
       ], [:model, :vendor, [:type, :tablet]], [
         /\((ipad);[\w\s\);-]+(apple)/i # iPad
@@ -173,6 +179,7 @@ class BrowserSniffer
       ], [[:type, :console]], [
         /(mobile|tablet);.+rv\:.+gecko\//i # Unidentifiable
       ], [:type, :vendor, :model]
+
     ],
     :engine => [
       [

@@ -490,7 +490,33 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :os_version => "8.1",
       :browser => :ie,
       :major_browser_version => 11
-    }
+    },
+    :nexus_seven => {
+      :user_agent => "Mozilla/5.0 (Linux; Android 4.4.2; Nexus 7 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.122 Safari/537.36",
+      :form_factor => :tablet,
+      :ios? => false,
+      :android? => true,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 537,
+      :os => :android,
+      :os_version => '4.4.2',
+      :browser => :chrome,
+      :major_browser_version => 35
+    },
+    :nexus_nine => {
+      :user_agent => "Mozilla/5.0 (Linux; Android 5.0; Nexus 9 Build/LRX21F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.509 Safari/537.36",
+      :form_factor => :tablet,
+      :ios? => false,
+      :android? => true,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 537,
+      :os => :android,
+      :os_version => '5.0',
+      :browser => :chrome,
+      :major_browser_version => 38
+    },
   }
 
   AGENTS.each do |agent, attributes|
