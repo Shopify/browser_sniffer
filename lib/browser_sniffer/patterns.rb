@@ -35,6 +35,7 @@ class BrowserSniffer
           'NT 6.1' => '7',
           'NT 6.2' => '8',
           'NT 6.3' => '8.1',
+          'NT 10.0' => '10',
           'ARM' => 'RT'
         }
       }
@@ -62,6 +63,8 @@ class BrowserSniffer
       ], [:name, :version, :major, [:type, :ie]], [
         /Mozilla\/5.0.*Windows NT 6\.\d.*Trident\/7\.\d.*rv:(\d+)\.\d*/i #IE11 on Win7
       ], [:major, [:version, 7], [:name, 'Internet Explorer'], [:type, :ie]], [
+        /Mozilla\/5.0.*Windows NT 10\.\d.*Trident\/7\.\d.*rv:(\d+)\.\d*.*like\sGecko/i #IE11 on Win10
+      ], [:major, [:version, 10], [:name, 'Internet Explorer'], [:type, :ie]], [
         # Webkit/KHTML based
         /(rekonq)\/?((\d+)[\w\.]+)*/i, # Rekonq
         /(flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt)\/((\d+)?[\w\.-]+)/i # Chromium/Flock/RockMelt/Midori/Epiphany/Silk/Skyfire/Bolt
