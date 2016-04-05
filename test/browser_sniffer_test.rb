@@ -504,6 +504,20 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :os_version => "10",
       :browser => :ie,
       :major_browser_version => 11
+    },
+    :win10_edge12 => {
+      :user_agent => "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10136",
+      :form_factor => :desktop,
+      :ios? => false,
+      :ie11? => false,
+      :android? => false,
+      :desktop? => true,
+      :engine => :webkit,
+      :major_engine_version => 537,
+      :os => :windows,
+      :os_version => "10",
+      :browser => :edge,
+      :major_browser_version => 12
     }
   }
 
