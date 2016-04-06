@@ -61,6 +61,8 @@ class BrowserSniffer
       ], [:name, :version, :major], [
         /(?:ms|\()(ie)\s((\d+)?[\w\.]+)/i # Internet Explorer
       ], [:name, :version, :major, [:type, :ie]], [
+        /Edge\/(\d+).\d+/i #Edge
+      ], [:major, [:version, 10], [:name, 'Edge'], [:type, :edge]], [
         /Mozilla\/5.0.*Windows NT 6\.\d.*Trident\/7\.\d.*rv:(\d+)\.\d*/i #IE11 on Win7
       ], [:major, [:version, 7], [:name, 'Internet Explorer'], [:type, :ie]], [
         /Mozilla\/5.0.*Windows NT 10\.\d.*Trident\/7\.\d.*rv:(\d+)\.\d*.*like\sGecko/i #IE11 on Win10
