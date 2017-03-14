@@ -423,7 +423,7 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
     },
     :ipad_ios10_webview => {
       :user_agent => "Mozilla/5.0 (iPad; CPU OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) FxiOS/6.1 Mobile/14D27 Safari/602.4.6",
-      :form_factor => :handheld,
+      :form_factor => :tablet,
       :ios? => true,
       :android? => false,
       :desktop? => false,
