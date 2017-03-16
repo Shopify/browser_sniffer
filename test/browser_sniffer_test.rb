@@ -421,6 +421,20 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :browser_name => 'Mobile Safari',
       :major_browser_version => 537
     },
+    :ipad_ios10_webview => {
+      :user_agent => "Mozilla/5.0 (iPad; CPU OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) FxiOS/6.1 Mobile/14D27 Safari/602.4.6",
+      :form_factor => :tablet,
+      :ios? => true,
+      :android? => false,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 602,
+      :os => :ios,
+      :os_version => '10.2.1',
+      :browser => :safari,
+      :browser_name => 'Mobile Safari',
+      :major_browser_version => 602
+    },
     :ipad_ios5 => {
       :user_agent => "Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3",
       :form_factor => :tablet,
