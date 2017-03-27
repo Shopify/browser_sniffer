@@ -431,9 +431,9 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :major_engine_version => 602,
       :os => :ios,
       :os_version => '10.2.1',
-      :browser => :safari,
-      :browser_name => 'Mobile Safari',
-      :major_browser_version => 602
+      :browser => :firefox,
+      :browser_name => 'Mobile Firefox',
+      :major_browser_version => 6
     },
     :ipad_ios5 => {
       :user_agent => "Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3",

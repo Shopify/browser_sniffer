@@ -84,6 +84,8 @@ class BrowserSniffer
       ], [[:name, 'Dolphin'], :version, :major], [
         /((?:android.+)crmo|crios)\/((\d+)?[\w\.]+)/i # Chrome for Android/iOS
       ], [[:name, 'Chrome'], :version, :major, [:type, :chrome]], [
+        /(FxiOS)\/((\d+)?[\w\.]+)/i # Firefox for iOS
+      ], [[:name, 'Mobile Firefox'], :version, :major, [:type, :firefox]], [
         /version\/((\d+)?[\w\.]+).+?mobile\/\w+\s(safari)/i # Mobile Safari
       ], [:version, :major, [:name, 'Mobile Safari'], [:type, :safari]], [
         /Mozilla\/5.0 \((?:iPhone|iPad|iPod(?: Touch)?);(.*)AppleWebKit\/((\d+)?[\w\.]+).+?(mobile)\/\w?/i # ios webview
