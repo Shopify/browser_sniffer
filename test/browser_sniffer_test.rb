@@ -431,7 +431,7 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :major_engine_version => 602,
       :os => :ios,
       :os_version => '10.2.1',
-      :browser => :firefox,
+      :browser => :firefoxios,
       :browser_name => 'Mobile Firefox',
       :major_browser_version => 6
     },
