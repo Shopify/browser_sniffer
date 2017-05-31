@@ -59,7 +59,7 @@ class BrowserSniffer
         # Trident based
         /(avant\s|iemobile|slim|baidu)(?:browser)?[\/\s]?((\d+)?[\w\.]*)/i # Avant/IEMobile/SlimBrowser/Baidu
       ], [:name, :version, :major], [
-        /(?:ms|\()(ie)\s((\d+)?[\w\.]+)/i # Internet Explorer
+        /(?:ms|\()(ie)\s((\d+)[\w\.]+)/i # Internet Explorer
       ], [:name, :version, :major, [:type, :ie]], [
         /Edge\/(\d+).\d+/i #Edge
       ], [:major, [:version, 10], [:name, 'Edge'], [:type, :edge]], [
