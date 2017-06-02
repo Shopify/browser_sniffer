@@ -532,6 +532,19 @@ class BrowserSnifferTest < MiniTest::Unit::TestCase
       :os_version => "10",
       :browser => :edge,
       :major_browser_version => 12
+    },
+    :daum => {
+      :user_agent => "Mozilla/5.0 (compatible; MSIE or Firefox mutant;) Daum 4.1",
+      :form_factor => :desktop,
+      :ios? => false,
+      :android? => false,
+      :desktop? => true,
+      :engine => nil,
+      :major_engine_version => nil,
+      :os => nil,
+      :os_version => nil,
+      :browser => nil,
+      :major_browser_version => nil
     }
   }
 
