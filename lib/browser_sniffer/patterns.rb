@@ -45,6 +45,39 @@ class BrowserSniffer
   REGEX_MAP = {
     :browser => [
       [
+        # Shopify Mobile for iPhone or iPad
+        %r{^Shopify/\d+\s\((iPhone|iPad)\;\siOS\s[\d\.]+}i
+      ], [[:name, 'Shopify Mobile']], [
+        # Shopify Mobile for Android
+        %r{^Dalvik/[a-z0-9\.]+.*Shopify\s[\d+\.\/]+}i
+      ], [[:name, 'Shopify Mobile']], [
+        # Shopify POS for iOS
+        %r{.*(Shopify\sPOS)\/([\d\.]+)\s\((iPhone|iPad|iPod\stouch)\;}i,
+      ], [:name, :version], [
+        # Old Shopify POS for Android
+        %r{^Dalvik/[a-z0-9\.]+.*(Shopify\sPOS)\s(\d(?:\.\d+)*)(\/\d*)*}i,
+      ], [:name, :version], [
+        # Shopify POS for Android (Native App)
+        %r{.*(\sPOS\s-).*\s([\d+\.]+)(\/\d*)*\s}i,
+      ], [[:name, 'Shopify POS'], :version], [
+        # Shopify POS for Android (SmartWebView)
+        %r{.*(Shopify\sPOS)\s.*Android.*\s([\d+\.]+)(\/\d*)*\s}i,
+      ], [:name, :version], [
+        # Shopify POS uses this user agent
+        %r{^(okhttp)\/([\d\.]+)}i
+      ], [:name, :version], [
+        # Shopify Mobile for iPhone or iPad
+        %r{^(Shopify Mobile)\/(?:iPhone\sOS|iOS)\/([\d\.]+) \((iPhone|iPad|iPod)}i
+      ], [[:name, 'Shopify Mobile'], :version], [
+        # Shopify Mobile for Android
+        %r{^(Shopify Mobile)\/Android\/([\d\.]+(?: \(debug(?:|-push)\))?) \(Build (\d+) with API (\d+)}i
+      ], [[:name, 'Shopify Mobile'], :version, :build, :sdk_version], [
+        # ShopifyFoundation shared library
+        /^(ShopifyFoundation)/i,
+      ], [:name], [
+        # Shopify Ping iOS
+        %r{^(Shopify Ping)\/(?:iPhone\sOS|iOS)\/([\d\.]+) \((iPhone|iPad|iPod)}i
+      ], [[:name, 'Shopify Ping'], :version], [
         # Presto based
         /(opera\smini)\/((\d+)?[\w\.-]+)/i, # Opera Mini
         /(opera\s[mobiletab]+).+:version\/((\d+)?[\w\.-]+)/i, # Opera Mobi/Tablet
@@ -117,6 +150,36 @@ class BrowserSniffer
     ],
     :device => [
       [
+        # Shopify Mobile for iPhone
+        %r{^Shopify Mobile/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPhone)([\d,]+)}i
+      ], [[:type, :handheld], :model], [
+        # Shopify Mobile for iPad
+        %r{^Shopify Mobile/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPad)([\d,]+)}i
+      ], [[:type, :tablet], :model], [
+        # Shopify Mobile for iPod touch
+        %r{^Shopify Mobile/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPod)([\d,]+)}i
+      ], [[:type, :handheld], :model], [
+        # Shopify Ping for iPhone
+        %r{^Shopify Ping/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPhone)([\d,]+)}i
+      ], [[:type, :handheld], :model], [
+        # Shopify Mobile for Android
+        %r{^Shopify Mobile\/(Android)\/[\d\.]+(?: \(debug(?:|-push)\))? \(Build \d+ with API \d+ on (.*?) (.*)\)}i
+      ], [[:type, :handheld], :vendor, :model], [
+        # Shopify POS for iPhone
+        %r{.*Shopify POS\/[\d\.]+ \((iPhone)\;.*Scale/([\d\.]+)}i,
+      ], [[:type, :handheld], :scale], [
+        # Shopify POS for iPad
+        %r{.*Shopify POS\/[\d\.]+ \((iPad)\;.*Scale/([\d\.]+)}i,
+      ], [[:type, :tablet], :scale], [
+        # Shopify POS for iPod touch
+        %r{.*Shopify POS\/[\d\.]+ \((iPod touch)\;.*Scale/([\d\.]+)}i,
+      ], [[:type, :handheld], :scale], [
+        # Shopify POS for Android (SmartWebView)
+        %r{.*Shopify\sPOS.*\(.*(Android)\s[\d\.]+\;\s(.*)\sBuild/.*\)\sPOS.*[\d+\.]+}i,
+      ], [[:type, :handheld], :model], [
+        # Shopify POS for Android (Native App)
+        %r{.*\(.*(Android)\s[\d\.]+\;\s(.*)\sBuild/.*\)\sPOS.*[\d+\.]+}i,
+      ], [[:type, :handheld], :model], [
         /\((playbook);[\w\s\);-]+(rim)/i # PlayBook
       ], [:model, :vendor, [:type, :tablet]], [
         /\((ipad);[\w\s\);-]+(apple)/i # iPad
@@ -198,6 +261,30 @@ class BrowserSniffer
     ],
     :os => [
       [
+        # Shopify Mobile for iOS
+        %r{^Shopify/\d+\s\((?:iPhone|iPad)\;\s(iOS)\s([\d\.]+)}i
+      ], [[:type, :ios], :version, [:name, 'iOS']], [
+        # Shopify POS for iOS
+        %r{.*Shopify\sPOS/[\d\.]+\s\((?:iPhone|iPad|iPod\stouch)\;\s(iOS)\s([\d\.]+)}i,
+      ], [[:type, :ios], :version, [:name, 'iOS']], [
+        # Old Shopify POS for Android
+        /^Dalvik.*(Android)\s([\d\.]+)\;\s.*\s[\d+\.]+/i,
+      ], [[:type, :android], :version, [:name, 'Android']], [
+        # Shopify POS for Android
+        /.*Shopify\sPOS\s.*(Android)\s([\d\.]+)\;\s.*\s[\d+\.]+\s/i,
+      ], [[:type, :android], :version, [:name, 'Android']], [
+        # Shopify Mobile for iOS
+        %r{^Shopify Mobile\/(iPhone\sOS|iOS)\/[\d\.]+ \(.*\/OperatingSystemVersion\((.*)\)}i
+      ], [[:type, :ios], [:version, lambda { |str| str && str.scan(/\d+/).join(".") }], [:name, 'iOS']], [
+        # Shopify Mobile for iPhone or iPad
+        %r{^(Shopify Mobile)\/(?:iPhone\sOS|iOS)[\/\d\.]* \((iPhone|iPad|iPod).*\/([\d\.]+)}i
+      ], [[:type, :ios], [:name, 'iOS'], :version], [
+        # Shopify Ping for iOS
+        %r{^Shopify Ping\/(iOS)\/[\d\.]+ \(.* Simulator\/.*\/([\d\.]+)\)}i
+      ], [[:type, :ios], :version, [:name, 'iOS']], [
+        # Shopify Mobile for Android
+        %r{^Shopify Mobile\/(Android)\/[\d\.]+ }i
+      ], [:name, [:type, :android]], [
         # Windows based
         /(windows)\snt\s6\.2;\s(arm)/i, # Windows RT
         /(windows\sphone(?:\sos)*|windows\smobile|windows)[\s\/]?([ntce\d\.\s]+\w)/i,
