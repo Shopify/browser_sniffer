@@ -280,7 +280,7 @@ class BrowserSniffer
         %r{^(Shopify Mobile)\/(?:iPhone\sOS|iOS)[\/\d\.]* \((iPhone|iPad|iPod).*\/([\d\.]+)}i
       ], [[:type, :ios], [:name, 'iOS'], :version], [
         # Shopify Ping for iOS
-        %r{^Shopify Ping\/(iOS)\/[\d\.]+ \(.* Simulator\/.*\/([\d\.]+)\)}i
+        %r{^Shopify Ping\/(iOS)\/[\d\.]+ \(.*\/([\d\.]+)\)}i
       ], [[:type, :ios], :version, [:name, 'iOS']], [
         # Shopify Mobile for Android
         %r{^Shopify Mobile\/(Android)\/[\d\.]+ }i
