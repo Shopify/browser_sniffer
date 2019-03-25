@@ -342,8 +342,29 @@ describe "Shopify agents" do
     assert_equal sniffer.os_info, sniffer_with_suffix.os_info
   end
 
-  it "Shopify Ping on iOS can be sniffed" do
+  it "Shopify Ping on iOS simulator can be sniffed" do
     user_agent = "Shopify Ping/iOS/1.0.0 (iPhone9,1 Simulator/com.shopify.ping/11.1.0)"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify Ping',
+      version: '1.0.0',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :handheld,
+      model: '9,1',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '11.1.0',
+      name: 'iOS',
+    }), sniffer.os_info
+  end
+
+  it "Shopify Ping on iOS can be sniffed" do
+    user_agent = "Shopify Ping/iOS/1.0.0 (iPhone9,1/com.jadedlabs.ping/11.1.0)"
     sniffer = BrowserSniffer.new(user_agent)
 
     assert_equal ({
