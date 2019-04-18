@@ -21,6 +21,27 @@ describe "Shopify agents" do
       version: '10.3.2',
       name: 'iOS',
     }), sniffer.os_info
+
+    user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) "\
+    "AppleWebKit/ 604.1.21 (KHTML, like Gecko) Version/ 12.0 Mobile/17A6278a Safari/602.1.26 "\
+    "MobileMiddlewareSupported Shopify Mobile/iOS/8.12.0 (iPad4,7/com.shopify.ShopifyInternal/12.0.0)"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify Mobile',
+      version: '8.12.0',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :tablet,
+      model: '4,7',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '12.0.0',
+      name: 'iOS',
+    }), sniffer.os_info
   end
 
   it "Shopify Mobile on iPod touch can be sniffed" do
@@ -43,11 +64,39 @@ describe "Shopify agents" do
       version: '9.3.5',
       name: 'iOS',
     }), sniffer.os_info
+
+    user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) "\
+    "AppleWebKit/ 604.1.21 (KHTML, like Gecko) Version/ 12.0 Mobile/17A6278a Safari/602.1.26 "\
+    "MobileMiddlewareSupported Shopify Mobile/iOS/8.12.0 (iPod5,1/com.shopify.ShopifyInternal/12.0.0)"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify Mobile',
+      version: '8.12.0',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :handheld,
+      model: '5,1',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '12.0.0',
+      name: 'iOS',
+    }), sniffer.os_info
   end
 
   it "Shopify Mobile on iPhone is detected as handheld" do
     user_agent = "Shopify Mobile/iOS/5.4.4 "\
       "(iPhone9,3/com.jadedpixel.shopify/OperatingSystemVersion(majorVersion: 10, minorVersion: 3, patchVersion: 2))"
+    sniffer = BrowserSniffer.new(user_agent)
+    assert_equal :handheld, sniffer.form_factor
+    assert sniffer.handheld?
+
+    user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) "\
+    "AppleWebKit/ 604.1.21 (KHTML, like Gecko) Version/ 12.0 Mobile/17A6278a Safari/602.1.26 "\
+    "MobileMiddlewareSupported Shopify Mobile/iOS/8.12.0 (iPhone9,3/com.shopify.ShopifyInternal/12.0.0)"
     sniffer = BrowserSniffer.new(user_agent)
     assert_equal :handheld, sniffer.form_factor
     assert sniffer.handheld?
@@ -59,6 +108,13 @@ describe "Shopify agents" do
     sniffer = BrowserSniffer.new(user_agent)
     assert_equal :tablet, sniffer.form_factor
     assert sniffer.tablet?
+
+    user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) "\
+    "AppleWebKit/ 604.1.21 (KHTML, like Gecko) Version/ 12.0 Mobile/17A6278a Safari/602.1.26 "\
+    "MobileMiddlewareSupported Shopify Mobile/iOS/8.12.0 (iPad9,3/com.shopify.ShopifyInternal/12.0.0)"
+    sniffer = BrowserSniffer.new(user_agent)
+    assert_equal :tablet, sniffer.form_factor
+    assert sniffer.tablet?
   end
 
   it "Shopify Mobile on iPhone OS is detected as iOS" do
@@ -67,10 +123,25 @@ describe "Shopify agents" do
     sniffer = BrowserSniffer.new(user_agent)
     assert_equal :ios, sniffer.os
     assert sniffer.ios?
+
+    user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) "\
+    "AppleWebKit/ 604.1.21 (KHTML, like Gecko) Version/ 12.0 Mobile/17A6278a Safari/602.1.26 "\
+    "MobileMiddlewareSupported Shopify Mobile/iOS/8.12.0 (iPad9,3/com.shopify.ShopifyInternal/12.0.0)"
+    sniffer = BrowserSniffer.new(user_agent)
+    assert_equal :ios, sniffer.os
+    assert sniffer.ios?
   end
 
   it "Shopify Mobile version is delected on iPhone OS" do
     user_agent = "Shopify Mobile/iOS/6.6.2 (iPhone10,1/com.jadedpixel.shopify/11.0.2)"
+    sniffer = BrowserSniffer.new(user_agent)
+    assert_equal "6.6.2", sniffer.browser_version
+    assert_equal "11.0.2", sniffer.os_version
+    assert sniffer.ios?
+
+    user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) "\
+    "AppleWebKit/ 604.1.21 (KHTML, like Gecko) Version/ 12.0 Mobile/17A6278a Safari/602.1.26 "\
+    "MobileMiddlewareSupported Shopify Mobile/iOS/6.6.2 (iPad9,3/com.shopify.ShopifyInternal/11.0.2)"
     sniffer = BrowserSniffer.new(user_agent)
     assert_equal "6.6.2", sniffer.browser_version
     assert_equal "11.0.2", sniffer.os_version
@@ -92,6 +163,29 @@ describe "Shopify agents" do
       type: :handheld,
       vendor: 'OnePlus',
       model: 'ONEPLUS A3003',
+    }), sniffer.device_info
+
+    assert_equal ({
+      name: 'Android',
+      type: :android,
+    }), sniffer.os_info
+
+    user_agent = "Shopify Mobile/Android/8.12.0 (Build 12005 with API 28 on Google Android SDK built for x86) "\
+    "MobileMiddlewareSupported Mozilla/5.0 (Linux; Android 9; Android SDK built for x86 Build/PSR1.180720.075; wv) "\
+    "AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/69.0.3497.100 Mobile Safari/537.36"
+    sniffer = BrowserSniffer.new(user_agent)
+    
+    assert_equal ({
+      name: 'Shopify Mobile',
+      version: '8.12.0',
+      build: '12005',
+      sdk_version: '28',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :handheld,
+      vendor: 'Google',
+      model: 'Android SDK built for x86',
     }), sniffer.device_info
 
     assert_equal ({
