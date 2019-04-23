@@ -46,10 +46,10 @@ class BrowserSniffer
     :browser => [
       [
         # Shopify Mobile for iPhone or iPad
-        %r{^Shopify/\d+\s\((iPhone|iPad)\;\siOS\s[\d\.]+}i
+        %r{.*Shopify/\d+\s\((iPhone|iPad)\;\siOS\s[\d\.]+}i
       ], [[:name, 'Shopify Mobile']], [
         # Shopify Mobile for Android
-        %r{^Dalvik/[a-z0-9\.]+.*Shopify\s[\d+\.\/]+}i
+        %r{.*Dalvik/[a-z0-9\.]+.*Shopify\s[\d+\.\/]+}i
       ], [[:name, 'Shopify Mobile']], [
         # Shopify POS for iOS
         %r{.*(Shopify\sPOS)\/([\d\.]+)\s\((iPhone|iPad|iPod\stouch)\;}i,
@@ -67,16 +67,16 @@ class BrowserSniffer
         %r{^(okhttp)\/([\d\.]+)}i
       ], [:name, :version], [
         # Shopify Mobile for iPhone or iPad
-        %r{^(Shopify Mobile)\/(?:iPhone\sOS|iOS)\/([\d\.]+) \((iPhone|iPad|iPod)}i
+        %r{.*(Shopify Mobile)\/(?:iPhone\sOS|iOS)\/([\d\.]+) \((iPhone|iPad|iPod)}i
       ], [[:name, 'Shopify Mobile'], :version], [
         # Shopify Mobile for Android
-        %r{^(Shopify Mobile)\/Android\/([\d\.]+(?: \(debug(?:|-push)\))?) \(Build (\d+) with API (\d+)}i
+        %r{.*(Shopify Mobile)\/Android\/([\d\.]+(?: \(debug(?:|-push)\))?) \(Build (\d+) with API (\d+)}i
       ], [[:name, 'Shopify Mobile'], :version, :build, :sdk_version], [
         # ShopifyFoundation shared library
         /^(ShopifyFoundation)/i,
       ], [:name], [
         # Shopify Ping iOS
-        %r{^(Shopify Ping)\/(?:iPhone\sOS|iOS)\/([\d\.]+) \((iPhone|iPad|iPod)}i
+        %r{.*(Shopify Ping)\/(?:iPhone\sOS|iOS)\/([\d\.]+) \((iPhone|iPad|iPod)}i
       ], [[:name, 'Shopify Ping'], :version], [
         # Presto based
         /(opera\smini)\/((\d+)?[\w\.-]+)/i, # Opera Mini
@@ -151,19 +151,19 @@ class BrowserSniffer
     :device => [
       [
         # Shopify Mobile for iPhone
-        %r{^Shopify Mobile/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPhone)([\d,]+)}i
+        %r{.*Shopify Mobile/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPhone)([\d,]+)}i
       ], [[:type, :handheld], :model], [
         # Shopify Mobile for iPad
-        %r{^Shopify Mobile/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPad)([\d,]+)}i
+        %r{.*Shopify Mobile/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPad)([\d,]+)}i
       ], [[:type, :tablet], :model], [
         # Shopify Mobile for iPod touch
-        %r{^Shopify Mobile/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPod)([\d,]+)}i
+        %r{.*Shopify Mobile/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPod)([\d,]+)}i
       ], [[:type, :handheld], :model], [
         # Shopify Ping for iPhone
-        %r{^Shopify Ping/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPhone)([\d,]+)}i
+        %r{.*Shopify Ping/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPhone)([\d,]+)}i
       ], [[:type, :handheld], :model], [
         # Shopify Mobile for Android
-        %r{^Shopify Mobile\/(Android)\/[\d\.]+(?: \(debug(?:|-push)\))? \(Build \d+ with API \d+ on (.*?) (.*)\)}i
+        %r{.*Shopify Mobile\/(Android)\/[\d\.]+(?: \(debug(?:|-push)\))? \(Build \d+ with API \d+ on (.*?) ([^\)]*)\)}i
       ], [[:type, :handheld], :vendor, :model], [
         # Shopify POS for iPhone
         %r{.*Shopify POS\/[\d\.]+ \((iPhone)\;.*Scale/([\d\.]+)}i,
@@ -262,7 +262,7 @@ class BrowserSniffer
     :os => [
       [
         # Shopify Mobile for iOS
-        %r{^Shopify/\d+\s\((?:iPhone|iPad)\;\s(iOS)\s([\d\.]+)}i
+        %r{.*Shopify/\d+\s\((?:iPhone|iPad)\;\s(iOS)\s([\d\.]+)}i
       ], [[:type, :ios], :version, [:name, 'iOS']], [
         # Shopify POS for iOS
         %r{.*Shopify\sPOS/[\d\.]+\s\((?:iPhone|iPad|iPod\stouch)\;\s(iOS)\s([\d\.]+)}i,
@@ -274,16 +274,16 @@ class BrowserSniffer
         /.*Shopify\sPOS\s.*(Android)\s([\d\.]+)\;\s.*\s[\d+\.]+\s/i,
       ], [[:type, :android], :version, [:name, 'Android']], [
         # Shopify Mobile for iOS
-        %r{^Shopify Mobile\/(iPhone\sOS|iOS)\/[\d\.]+ \(.*\/OperatingSystemVersion\((.*)\)}i
+        %r{.*Shopify Mobile\/(iPhone\sOS|iOS)\/[\d\.]+ \(.*\/OperatingSystemVersion\((.*)\)}i
       ], [[:type, :ios], [:version, lambda { |str| str && str.scan(/\d+/).join(".") }], [:name, 'iOS']], [
         # Shopify Mobile for iPhone or iPad
-        %r{^(Shopify Mobile)\/(?:iPhone\sOS|iOS)[\/\d\.]* \((iPhone|iPad|iPod).*\/([\d\.]+)}i
+        %r{.*(Shopify Mobile)\/(?:iPhone\sOS|iOS)[\/\d\.]* \((iPhone|iPad|iPod).*\/([\d\.]+)\)}i
       ], [[:type, :ios], [:name, 'iOS'], :version], [
         # Shopify Ping for iOS
-        %r{^Shopify Ping\/(iOS)\/[\d\.]+ \(.*\/([\d\.]+)\)}i
+        %r{.*Shopify Ping\/(iOS)\/[\d\.]+ \(.*\/([\d\.]+)\)}i
       ], [[:type, :ios], :version, [:name, 'iOS']], [
         # Shopify Mobile for Android
-        %r{^Shopify Mobile\/(Android)\/[\d\.]+ }i
+        %r{.*Shopify Mobile\/(Android)\/[\d\.]+ }i
       ], [:name, [:type, :android]], [
         # Windows based
         /(windows)\snt\s6\.2;\s(arm)/i, # Windows RT
