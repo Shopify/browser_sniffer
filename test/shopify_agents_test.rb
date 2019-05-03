@@ -252,6 +252,48 @@ describe "Shopify agents" do
     }), sniffer.os_info
   end
 
+  it "Shopify POS on iPhone with modern user agent can be sniffed" do
+    user_agent = "Shopify POS/iOS/3.12.1 (iPhone10,2/com.jadedpixel.pos/10.3.1)"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify POS',
+      version: '3.12.1',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :handheld,
+      model: '10,2',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '10.3.1',
+      name: 'iOS',
+    }), sniffer.os_info
+  end
+
+  it "Shopify POS Next on iPhone with modern user agent can be sniffed" do
+    user_agent = "Shopify POS Next/iOS/3.12.1 (iPhone10,2/com.jadedpixel.pos/10.3.1)"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify POS',
+      version: '3.12.1',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :handheld,
+      model: '10,2',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '10.3.1',
+      name: 'iOS',
+    }), sniffer.os_info
+  end
+
   it "Shopify POS on iPod touch can be sniffed" do
     user_agent = "Shopify POS/3.12.1 (iPod touch; iOS 9.3.5; Scale/2.00)"
     sniffer = BrowserSniffer.new(user_agent)
@@ -273,11 +315,95 @@ describe "Shopify agents" do
     }), sniffer.os_info
   end
 
+  it "Shopify POS on iPod touch with modern user agent can be sniffed" do
+    user_agent = "Shopify POS/iOS/3.12.1 (iPod5,2/com.jadedpixel.pos/10.3.1)"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify POS',
+      version: '3.12.1',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :handheld,
+      model: '5,2',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '10.3.1',
+      name: 'iOS',
+    }), sniffer.os_info
+  end
+
+  it "Shopify POS Next on iPod touch with modern user agent can be sniffed" do
+    user_agent = "Shopify POS Next/iOS/3.12.1 (iPod5,2/com.jadedpixel.pos/10.3.1)"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify POS',
+      version: '3.12.1',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :handheld,
+      model: '5,2',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '10.3.1',
+      name: 'iOS',
+    }), sniffer.os_info
+  end
+
   it "Shopify POS on iPad is detected as tablet" do
     user_agent = "Shopify POS/3.10.12 (iPad; iOS 10.3.1; Scale/2.00)"
     sniffer = BrowserSniffer.new(user_agent)
 
     assert_equal :tablet, sniffer.form_factor
+  end
+
+  it "Shopify POS on iPad with modern user agent can be sniffed" do
+    user_agent = "Shopify POS/iOS/3.12.1 (iPad4,7/com.jadedpixel.pos/10.3.1)"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify POS',
+      version: '3.12.1',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :tablet,
+      model: '4,7',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '10.3.1',
+      name: 'iOS',
+    }), sniffer.os_info
+  end
+
+  it "Shopify POS Next on iPad with modern user agent can be sniffed" do
+    user_agent = "Shopify POS Next/iOS/3.12.1 (iPad4,7/com.jadedpixel.pos/10.3.1)"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify POS',
+      version: '3.12.1',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :tablet,
+      model: '4,7',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '10.3.1',
+      name: 'iOS',
+    }), sniffer.os_info
   end
 
   it "Shopify POS with okhttp user agent can be parsed" do

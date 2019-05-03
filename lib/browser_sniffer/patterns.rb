@@ -69,6 +69,9 @@ class BrowserSniffer
         # Shopify Mobile for iPhone or iPad
         %r{.*(Shopify Mobile)\/(?:iPhone\sOS|iOS)\/([\d\.]+) \((iPhone|iPad|iPod)}i
       ], [[:name, 'Shopify Mobile'], :version], [
+        # Shopify POS Next for iPhone or iPad
+        %r{.*(Shopify POS Next|Shopify POS)\/(?:iOS)\/([\d\.]+) \((iPhone|iPad|iPod)}i
+      ], [[:name, 'Shopify POS'], :version], [
         # Shopify Mobile for Android
         %r{.*(Shopify Mobile)\/Android\/([\d\.]+(?: \(debug(?:|-push)\))?) \(Build (\d+) with API (\d+)}i
       ], [[:name, 'Shopify Mobile'], :version, :build, :sdk_version], [
@@ -158,6 +161,15 @@ class BrowserSniffer
       ], [[:type, :tablet], :model], [
         # Shopify Mobile for iPod touch
         %r{.*Shopify Mobile/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPod)([\d,]+)}i
+      ], [[:type, :handheld], :model], [
+        # Shopify POS Next for iPhone
+        %r{.*(?:Shopify POS Next|Shopify POS)/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPhone)([\d,]+)}i
+      ], [[:type, :handheld], :model], [
+        # Shopify POS Next for iPad
+        %r{.*(?:Shopify POS Next|Shopify POS)/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPad)([\d,]+)}i
+      ], [[:type, :tablet], :model], [
+        # Shopify POS Next for iPod touch
+        %r{.*(?:Shopify POS Next|Shopify POS)/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPod)([\d,]+)}i
       ], [[:type, :handheld], :model], [
         # Shopify Ping for iPhone
         %r{.*Shopify Ping/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPhone)([\d,]+)}i
@@ -278,6 +290,9 @@ class BrowserSniffer
       ], [[:type, :ios], [:version, lambda { |str| str && str.scan(/\d+/).join(".") }], [:name, 'iOS']], [
         # Shopify Mobile for iPhone or iPad
         %r{.*(Shopify Mobile)\/(?:iPhone\sOS|iOS)[\/\d\.]* \((iPhone|iPad|iPod).*\/([\d\.]+)\)}i
+      ], [[:type, :ios], [:name, 'iOS'], :version], [
+        # Shopify POS Next for iPhone or iPad
+        %r{.*(Shopify POS Next|Shopify POS)\/(?:iPhone\sOS|iOS)[\/\d\.]* \((iPhone|iPad|iPod).*\/([\d\.]+)\)}i
       ], [[:type, :ios], [:name, 'iOS'], :version], [
         # Shopify Ping for iOS
         %r{.*Shopify Ping\/(iOS)\/[\d\.]+ \(.*\/([\d\.]+)\)}i
