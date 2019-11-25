@@ -406,6 +406,77 @@ describe "Shopify agents" do
     }), sniffer.os_info
   end
 
+  it "Shopify POS via webview can be sniffed" do
+    user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) "\
+    "AppleWebKit/ 604.1.21 (KHTML, like Gecko) Version/ 12.0 Mobile/17A6278a Safari/602.1.26 "\
+    "MobileMiddlewareSupported com.jadedpixel.pos Shopify POS/5.43.1 (iPad; iOS 13.1; Scale/2.00)"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify POS',
+      version: '5.43.1',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :tablet,
+      scale: '2.00',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '13.1',
+      name: 'iOS',
+    }), sniffer.os_info
+  end
+
+  it "Shopify POS with modern user agent via webview can be sniffed" do
+    user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) "\
+    "AppleWebKit/ 604.1.21 (KHTML, like Gecko) Version/ 12.0 Mobile/17A6278a "\
+    "Safari/602.1.26 MobileMiddlewareSupported Shopify POS/iOS/3.12.1 "\
+    "(iPad4,7/com.jadedpixel.pos/10.3.1) - Build 1"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify POS',
+      version: '3.12.1',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :tablet,
+      model: '4,7',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      name: 'iOS',
+      version: '10.3.1',
+    }), sniffer.os_info
+  end
+
+  it "Shopify POS Next with modern user agent via webview can be sniffed" do
+    user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) "\
+    "AppleWebKit/ 604.1.21 (KHTML, like Gecko) Version/ 12.0 Mobile/17A6278a "\
+    "Safari/602.1.26 MobileMiddlewareSupported Shopify POS Next/iOS/3.12.1 "\
+    "(iPad4,7/com.jadedpixel.pos/10.3.1) - Build 1"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify POS',
+      version: '3.12.1',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :tablet,
+      model: '4,7',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      name: 'iOS',
+      version: '10.3.1',
+    }), sniffer.os_info
+  end
+
   it "Shopify POS with okhttp user agent can be parsed" do
     user_agent = "okhttp/3.6.0"
     sniffer = BrowserSniffer.new(user_agent)
