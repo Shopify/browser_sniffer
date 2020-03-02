@@ -153,4 +153,42 @@ class BrowserSniffer
     end
     result
   end
+
+  def same_site_none_compatible?
+    return false unless user_agent
+
+    webkit_same_site_compatible? && same_site_recognized_browser?
+  end
+
+  def webkit_same_site_compatible?
+    return false unless os && os_version && browser
+
+    !(os == :ios && os_version.match(/^([0-9]|1[12])[\.\_]/)) &&
+       !(os == :mac && browser == :safari && os_version.match(/^10[\.\_]14/))
+  end
+
+  def same_site_recognized_browser?
+    return false unless major_browser_version
+
+    !(chromium_based? && major_browser_version >= 51 && major_browser_version <= 66) &&
+      !(uc_browser? && !uc_browser_version_at_least?(12, 13, 2))
+  end
+
+  def chromium_based?
+    browser_name ? browser_name.downcase.match(/chrom(e|ium)/) : false
+  end
+
+  def uc_browser?
+    user_agent ? user_agent.downcase.match(/uc\s?browser/) : false
+  end
+
+  def uc_browser_version_at_least?(major, minor, build)
+    return false unless browser_version
+    digits = browser_version.split('.').map(&:to_i)
+    return false unless digits.count >= 3
+
+    return digits[0] > major if digits[0] != major
+    return digits[1] > minor if digits[1] != minor
+    digits[2] >= build
+  end
 end
