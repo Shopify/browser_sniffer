@@ -155,6 +155,7 @@ describe "Shopify agents" do
     assert_equal ({
       name: 'Shopify Mobile',
       version: '5.4.4',
+      debug_mode: nil,
       build: '12005',
       sdk_version: '25',
     }), sniffer.browser_info
@@ -174,10 +175,11 @@ describe "Shopify agents" do
     "MobileMiddlewareSupported Mozilla/5.0 (Linux; Android 9; Android SDK built for x86 Build/PSR1.180720.075; wv) "\
     "AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/69.0.3497.100 Mobile Safari/537.36"
     sniffer = BrowserSniffer.new(user_agent)
-    
+
     assert_equal ({
       name: 'Shopify Mobile',
       version: '8.12.0',
+      debug_mode: nil,
       build: '12005',
       sdk_version: '28',
     }), sniffer.browser_info
@@ -203,7 +205,8 @@ describe "Shopify agents" do
 
     assert_equal ({
       name: 'Shopify Mobile',
-      version: '6.2.0 (debug)',
+      version: '6.2.0',
+      debug_mode: 'debug',
       build: '1',
       sdk_version: '25',
     }), sniffer.browser_info
@@ -557,7 +560,8 @@ describe "Shopify agents" do
 
     assert_equal ({
       name: 'Shopify Mobile',
-      version: '6.0.0 (debug)',
+      version: '6.0.0',
+      debug_mode: 'debug',
       build: '1',
       sdk_version: '25',
     }), sniffer.browser_info
@@ -580,7 +584,8 @@ describe "Shopify agents" do
 
     assert_equal ({
       name: 'Shopify Mobile',
-      version: '6.0.0 (debug-push)',
+      version: '6.0.0',
+      debug_mode: 'debug-push',
       build: '1',
       sdk_version: '25',
     }), sniffer.browser_info
@@ -703,7 +708,7 @@ describe "Shopify agents" do
   COMPATIBLE_USER_AGENTS.each do |user_agent|
     it "user agent #{user_agent} is correctly marked as compatible" do
       sniffer = BrowserSniffer.new(user_agent)
-      
+
       assert sniffer.same_site_none_compatible?
     end
   end

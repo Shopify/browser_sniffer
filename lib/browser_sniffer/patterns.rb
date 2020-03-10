@@ -73,8 +73,8 @@ class BrowserSniffer
         %r{.*(Shopify POS Next|Shopify POS)\/(?:iOS)\/([\d\.]+) \((iPhone|iPad|iPod)}i
       ], [[:name, 'Shopify POS'], :version], [
         # Shopify Mobile for Android
-        %r{.*(Shopify Mobile)\/Android\/([\d\.]+(?: \(debug(?:|-push)\))?) \(Build (\d+) with API (\d+)}i
-      ], [[:name, 'Shopify Mobile'], :version, :build, :sdk_version], [
+        %r{.*(Shopify Mobile)\/Android\/([\d\.]+)(?: \((debug(?:|-push))\))? \(Build (\d+) with API (\d+)}i
+      ], [[:name, 'Shopify Mobile'], :version, :debug_mode, :build, :sdk_version], [
         # ShopifyFoundation shared library
         /^(ShopifyFoundation)/i,
       ], [:name], [
