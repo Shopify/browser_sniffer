@@ -17,6 +17,8 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 1.9.3"
 
+  spec.metadata['allowed_push_host'] = 'https://rubygems.org'
+
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "minitest"
   spec.add_development_dependency "rake"
