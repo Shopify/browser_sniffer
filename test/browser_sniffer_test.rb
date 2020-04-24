@@ -544,7 +544,20 @@ class BrowserSnifferTest < Minitest::Test
       :os_version => nil,
       :browser => nil,
       :major_browser_version => nil
-    }
+    },
+    :chromiumos_chrome => {
+      :user_agent => "Mozilla/5.0 (X11; CrOS x86_64 10066.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36",
+      :form_factor => :desktop,
+      :ios? => false,
+      :android? => false,
+      :desktop? => true,
+      :engine => :webkit,
+      :major_engine_version => 537,
+      :os => :chromium_os,
+      :os_version => '10066.0.0',
+      :browser => :chrome,
+      :major_browser_version => 81,
+    },
   }
 
   AGENTS.each do |agent, attributes|

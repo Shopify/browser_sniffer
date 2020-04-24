@@ -332,7 +332,7 @@ class BrowserSniffer
         /(gnu)\s?([\w\.]+)*/i # GNU
       ], [:name, :version, [:type, :linux]], [
         /(cros)\s[\w]+\s([\w\.]+\w)/i # Chromium OS
-      ], [[:name, 'Chromium OS'], :version],[
+      ], [[:name, 'Chromium OS'], :version, [:type, :chromium_os]],[
         # Solaris
         /(sunos)\s?([\w\.]+\d)*/i # Solaris
       ], [[:name, 'Solaris'], :version], [
