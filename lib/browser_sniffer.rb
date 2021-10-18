@@ -24,6 +24,12 @@ class BrowserSniffer
     browser == :ie && major_browser_version == 11
   end
 
+  def ie11_actual?
+    browser == :ie && major_browser_version == 11 ||
+      major_engine_version == 7 && engine_name == "Trident" ||
+      major_browser_version == 11 && browser_name == "IEMobile"
+  end
+
   def handheld?
     form_factor == :handheld
   end
