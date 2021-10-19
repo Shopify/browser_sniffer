@@ -24,10 +24,13 @@ class BrowserSniffer
     browser == :ie && major_browser_version == 11
   end
 
+  # This method checks ie 11 mobile or ie11 rendering an older version in compatibility mode, in addition to `ie11?`.
+  # The `ie11?` method would return false in both those scenarios.
   def ie11_actual?
-    browser == :ie && major_browser_version == 11 ||
-      major_engine_version == 7 && engine_name == "Trident" ||
-      major_browser_version == 11 && browser_name == "IEMobile"
+    ie11_engine = major_engine_version == 7 && engine_name == 'Trident'
+    ie_mobile11 = major_browser_version == 11 && browser_name == 'IEMobile'
+
+    ie11? || ie11_engine || ie_mobile11
   end
 
   def handheld?
