@@ -60,6 +60,9 @@ class BrowserSniffer
         # Shopify POS for Android (Native App)
         %r{.*(\sPOS\s-).*\s([\d+\.]+)(\/\d*)*\s}i,
       ], [[:name, 'Shopify POS'], :version], [
+        # Shopify POS for Android (Native App) New Format
+        %r{(Shopify POS)\/([\d\.]+)[^\/]*\/(Android)\/(\d+)}i,
+      ], [[:name, 'Shopify POS'], :version], [
         # Shopify POS for Android (SmartWebView)
         %r{.*(Shopify\sPOS)\s.*Android.*\s([\d+\.]+)(\/\d*)*\s}i,
       ], [:name, :version], [

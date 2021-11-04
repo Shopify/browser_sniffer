@@ -554,6 +554,34 @@ describe "Shopify agents" do
     assert_equal sniffer.os_info, sniffer_with_suffix.os_info
   end
 
+  it "Shopify POS on Android can be sniffed (Native App) New Format" do
+    user_agent = "com.jadedpixel.pos Shopify POS/4.23.0/Android/12/google/Pixel 5/production MobileMiddlewareSupported"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    user_agent_with_mal = "com.jadedpixel.pos Shopify POS/4.23.0-mal+30112/Android/12/google/Android SDK built for " \
+    "x86/development MobileMiddlewareSupported"
+    sniffer_with_suffix = BrowserSniffer.new(user_agent_with_mal)
+
+    assert_equal ({
+      name: 'Shopify POS',
+      version: '4.23.0',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :handheld,
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :android,
+      version: '12',
+      name: 'Android',
+    }), sniffer.os_info
+
+    assert_equal sniffer.browser_info, sniffer_with_suffix.browser_info
+    assert_equal sniffer.device_info, sniffer_with_suffix.device_info
+    assert_equal sniffer.os_info, sniffer_with_suffix.os_info
+  end
+
   it "Shopify Mobile in debug mode can be parsed" do
     user_agent = "Shopify Mobile/Android/6.0.0 (debug) (Build 1 with API 25 on Unknown Android SDK built for x86)"
     sniffer = BrowserSniffer.new(user_agent)
