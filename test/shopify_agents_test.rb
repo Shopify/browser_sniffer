@@ -708,33 +708,68 @@ describe "Shopify agents" do
     }), sniffer.os_info
   end
 
-  INCOMPATIBLE_USER_AGENTS = [
-    "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko)"\
-      " GSA/87.0.279142407 Mobile/15E148 Safari/605.1",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko)"\
-      " Version/12.1.2 Safari/605.1.15",
-    "Mozilla/5.0 (Linux; U; Android 7.0; en-US; SM-G935F Build/NRD90M) AppleWebKit/534.30 (KHTML, like Gecko) "\
-      "Version/4.0 UCBrowser/11.3.8.976 U3/0.8.0 Mobile Safari/534.30",
-  ]
+  INCOMPATIBLE_USER_AGENTS = {
+    'missing' => nil,
 
-  INCOMPATIBLE_USER_AGENTS.each do |user_agent|
-    it "user agent #{user_agent} is correctly marked as incompatible" do
+    # Safari on iOS 12 is broken
+    'iOS 12.0' => "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/87.0.279142407 Mobile/15E148 Safari/605.1",
+    'iOS 12.2' => "Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Mobile/15E148 Safari/604.1",
+
+    # Safari on MacOS 14 is broken
+    'MacOS 10.14 Safari' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Safari/605.1.15",
+    'MacOS 10.14 WebKit' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/605.1.15 (KHTML, like Gecko)",
+
+    # UC Browser versions before 12.13.2 are broken
+    'UC Browser 11.3.8' => "Mozilla/5.0 (Linux; U; Android 7.0; en-US; SM-G935F Build/NRD90M) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/11.3.8.976 U3/0.8.0 Mobile Safari/534.30",
+    'UC Browser 12.13.0' => "Mozilla/5.0 (Linux; U; Android 8.0.0; en-US; moto g⁶ play Build/OPP27.91-88) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/12.13.0.1207 Mobile Safari/537.36",
+
+    # Chrome and Chromium versions between 51 and 66 inclusive are broken
+    'Chrome 51' => "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",
+    'Chrome 66' => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36",
+
+    'Chromium 51' => "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/51.0.2704.79 Chrome/51.0.2704.79 Safari/537.36",
+    'Chromium 66' => "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/66.0.3359.181 Chrome/66.0.3359.181 Safari/537.36",
+  }
+
+  INCOMPATIBLE_USER_AGENTS.each do |label, user_agent|
+    it "#{label} user agent is correctly marked as incompatible" do
       sniffer = BrowserSniffer.new(user_agent)
 
       refute sniffer.same_site_none_compatible?
     end
   end
 
-  COMPATIBLE_USER_AGENTS = [
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117"\
-      " Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:72.0) Gecko/20100101 Firefox/72.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4"\
-      " Safari/605.1.15",
-  ]
+  COMPATIBLE_USER_AGENTS = {
+    'iOS 13' => "Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Mobile/15E148 Safari/604.1",
 
-  COMPATIBLE_USER_AGENTS.each do |user_agent|
-    it "user agent #{user_agent} is correctly marked as compatible" do
+    'MacOS 10.13 Safari' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6",
+
+    'MacOS 10.14 Chrome' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
+
+    'MacOS 10.15 Safari' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Safari/605.1.15",
+
+    'MacOS 10.15 Firefox' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:72.0) Gecko/20100101 Firefox/72.0",
+
+    'UC Browser 13.3.8' => "Mozilla/5.0 (Linux; U; Android 11; en-US; SM-A715F Build/RP1A.200720.012) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.108 UCBrowser/13.3.8.1305 Mobile Safari/537.36",
+
+    'Chrome 50' => "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36",
+    'Chrome 67' => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36",
+
+    'Chromium 50' => "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/50.0.2661.102 Chrome/50.0.2661.102 Safari/537.36",
+    'Chromium 67' => "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/67.0.3396.99 Chrome/67.0.3396.99 Safari/537.36",
+
+    # False negative: library doesn't recognise WebKit user agents that aren't Safari or Chrome
+    # (These may be e.g. Webkit nightly builds)
+    # 'MacOS 10.13 WebKit' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko)",
+    # 'MacOS 10.15 WebKit' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko)",
+
+    # False negative: library explicitly treats iOS 11 Safari as incompatible while reference code does not:
+    # https://www.chromium.org/updates/same-site/incompatible-clients
+    # 'iOS 11' => "Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1",
+  }
+
+  COMPATIBLE_USER_AGENTS.each do |label, user_agent|
+    it "#{label} user agent is correctly marked as compatible" do
       sniffer = BrowserSniffer.new(user_agent)
 
       assert sniffer.same_site_none_compatible?
