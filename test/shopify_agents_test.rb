@@ -554,7 +554,7 @@ describe "Shopify agents" do
     assert_equal sniffer.os_info, sniffer_with_suffix.os_info
   end
 
-  it "Shopify POS on Android can be sniffed (Native App) New Format" do
+  it "Shopify POS on Android can be sniffed (React Native App)" do
     user_agent = "com.jadedpixel.pos Shopify POS/4.23.0/Android/12/google/Pixel 5/production MobileMiddlewareSupported"
     sniffer = BrowserSniffer.new(user_agent)
 
@@ -580,6 +580,69 @@ describe "Shopify agents" do
     assert_equal sniffer.browser_info, sniffer_with_suffix.browser_info
     assert_equal sniffer.device_info, sniffer_with_suffix.device_info
     assert_equal sniffer.os_info, sniffer_with_suffix.os_info
+  end
+
+  it "Shopify POS on iPhone can be sniffed (React Native App)" do
+    user_agent = "com.jadedpixel.pos Shopify POS/7.0.0/iOS/15.4/Apple/iPhone 11/production"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify POS',
+      version: '7.0.0',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :handheld,
+      model: 'iPhone 11',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '15.4',
+      name: 'iOS',
+    }), sniffer.os_info
+  end
+
+  it "Shopify POS on iPad can be sniffed (React Native App)" do
+    user_agent = "com.jadedpixel.pos Shopify POS/7.0.0/iOS/15.4/Apple/iPad/production"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify POS',
+      version: '7.0.0',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :tablet,
+      model: 'iPad',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '15.4',
+      name: 'iOS',
+    }), sniffer.os_info
+  end
+
+  it "Shopify POS on iPod Touch can be sniffed (React Native App)" do
+    user_agent = "com.jadedpixel.pos Shopify POS/7.0.0/iOS/15.4/Apple/iPod Touch/production"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify POS',
+      version: '7.0.0',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :handheld,
+      model: 'iPod Touch',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '15.4',
+      name: 'iOS',
+    }), sniffer.os_info
   end
 
   it "Shopify Mobile in debug mode can be parsed" do
