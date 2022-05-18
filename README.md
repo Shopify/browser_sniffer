@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/Shopify/browser_sniffer.png?branch=master)](http://travis-ci.org/Shopify/browser_sniffer)
+![Build Status](https://github.com/Shopify/browser_sniffer/actions/workflows/test.yml/badge.svg?branch=master)
 [![Gem Version](https://badge.fury.io/rb/browser_sniffer.png)](http://badge.fury.io/rb/browser_sniffer)
 
 # BrowserSniffer
