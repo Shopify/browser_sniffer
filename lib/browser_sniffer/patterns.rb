@@ -60,8 +60,11 @@ class BrowserSniffer
         # Shopify POS for Android (Native App)
         %r{.*(\sPOS\s-).*\s([\d+\.]+)(\/\d*)*\s}i,
       ], [[:name, 'Shopify POS'], :version], [
-        # Shopify POS for Android (Native App) New Format
+        # Shopify POS for Android (React Native App)
         %r{(Shopify POS)\/([\d\.]+)[^\/]*\/(Android)\/(\d+)}i,
+      ], [[:name, 'Shopify POS'], :version], [
+        # Shopify POS for iOS (React Native App)
+        %r{(Shopify POS)\/([\d\.]+)[^\/]*\/(iOS)\/([\d\.]+)}i,
       ], [[:name, 'Shopify POS'], :version], [
         # Shopify POS for Android (SmartWebView)
         %r{.*(Shopify\sPOS)\s.*Android.*\s([\d+\.]+)(\/\d*)*\s}i,
@@ -174,6 +177,12 @@ class BrowserSniffer
         # Shopify POS Next for iPod touch
         %r{.*(?:Shopify POS Next|Shopify POS)/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPod)([\d,]+)}i
       ], [[:type, :handheld], :model], [
+        # Shopify POS for iOS iPhone/iPod (React Native App)
+        %r{.*Shopify POS\/[\d\.]+[^\/]*\/(iOS)\/[\d\.]+\/Apple\/((iPhone|iPod)[^\/]*)\/}i,
+      ], [[:type, :handheld], :model], [
+        # Shopify POS for iOS iPad (React Native App)
+        %r{.*Shopify POS\/[\d\.]+[^\/]*\/(iOS)\/[\d\.]+\/Apple\/(iPad[^\/]*)\/}i,
+      ], [[:type, :tablet], :model], [
         # Shopify Ping for iPhone
         %r{.*Shopify Ping/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPhone)([\d,]+)}i
       ], [[:type, :handheld], :model], [
@@ -297,6 +306,9 @@ class BrowserSniffer
         # Shopify POS Next for iPhone or iPad
         %r{.*(Shopify POS Next|Shopify POS)\/(?:iPhone\sOS|iOS)[\/\d\.]* \((iPhone|iPad|iPod).*\/([\d\.]+)\)}i
       ], [[:type, :ios], [:name, 'iOS'], :version], [
+        # Shopify POS for iOS (React Native App)
+        %r{.*Shopify POS\/[\d\.]+[^\/]*\/(iOS)\/([\d\.]+)\/(Apple)\/(iPhone|iPad|iPod)[^\/]*\/}i
+      ], [[:type, :ios], :version, [:name, 'iOS']], [
         # Shopify Ping for iOS
         %r{.*Shopify Ping\/(iOS)\/[\d\.]+ \(.*\/([\d\.]+)\)}i
       ], [[:type, :ios], :version, [:name, 'iOS']], [
