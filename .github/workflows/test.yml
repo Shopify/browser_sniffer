@@ -1,0 +1,35 @@
+name: Ruby CI
+
+on:
+  pull_request:
+  push:
+    branches: master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - 2.0
+          - 2.1
+          - 2.2
+          - 2.3
+          - 2.4
+          - 2.5
+          - 2.6
+          - 2.7
+          - 3.0
+          - 3.1
+          - jruby
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby ${{ matrix.version }}
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: ${{ matrix.version }}
+      - name: Run Tests
+        run: bundle exec rake test
