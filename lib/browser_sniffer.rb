@@ -135,9 +135,8 @@ class BrowserSniffer
 
   def parse_user_agent_for(type)
     result = {}
-    type.each_slice(2) do |slice|
-      format = slice[1]
-      slice[0].each do |regex|
+    type.each_slice(2) do |regexps, format|
+      regexps.each do |regex|
         regex.match(user_agent) do |match|
           format.each_with_index do |field, index|
             if field.class == Symbol
