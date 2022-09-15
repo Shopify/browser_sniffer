@@ -13,7 +13,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :ios,
       :os_version => '3.2',
       :browser => :safari,
-      :major_browser_version => 4
+      :major_browser_version => 4,
+      :in_app_browser => nil,
     },
     :ipad_new => {
       :user_agent => "Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10",
@@ -26,7 +27,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :ios,
       :os_version => '3.2',
       :browser => :safari,
-      :major_browser_version => 4
+      :major_browser_version => 4,
+      :in_app_browser => nil,
     },
     :ipad_chrome => {
       :user_agent => "Mozilla/5.0 (iPad; CPU OS 6_0_1 like Mac OS X; en-us) AppleWebKit/534.46.0 (KHTML, like Gecko) CriOS/21.0.1180.82 Mobile/10A523 Safari/7534.48.3",
@@ -39,7 +41,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :ios,
       :os_version => '6.0.1',
       :browser => :chrome,
-      :major_browser_version => 21
+      :major_browser_version => 21,
+      :in_app_browser => nil,
     },
     :iphone => {
       :user_agent => "Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_2 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7D11 Safari/528.16",
@@ -52,7 +55,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :ios,
       :os_version => '3.1.2',
       :browser => :safari,
-      :major_browser_version => 4
+      :major_browser_version => 4,
+      :in_app_browser => nil,
     },
     :ipod_touch => {
       :user_agent => "Mozilla/5.0 (iPod; U; CPU iPhone OS 2_2_1 like Mac OS X; en-us) AppleWebKit/525.18.1 (KHTML, like Gecko) Version/3.1.1 Mobile/5H11a Safari/525.20",
@@ -65,7 +69,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :ios,
       :os_version => '2.2.1',
       :browser => :safari,
-      :major_browser_version => 3
+      :major_browser_version => 3,
+      :in_app_browser => nil,
     },
     :ipod_touch_ios4 => {
       :user_agent => "Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-jp) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5",
@@ -78,7 +83,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :ios,
       :os_version => '4.3.3',
       :browser => :safari,
-      :major_browser_version => 5
+      :major_browser_version => 5,
+      :in_app_browser => nil,
     },
     :ipod_touch_ios7 => {
       :user_agent => "Mozilla/5.0 (iPod touch; CPU iPhone OS 7_0_4 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11B554a Safari/9537.53",
@@ -91,7 +97,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :ios,
       :os_version => '7.0.4',
       :browser => :safari,
-      :major_browser_version => 7
+      :major_browser_version => 7,
+      :in_app_browser => nil,
     },
     :nexus_one => {
       :user_agent => "Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
@@ -104,7 +111,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :android,
       :os_version => '2.2',
       :browser => :safari,
-      :major_browser_version => 4
+      :major_browser_version => 4,
+      :in_app_browser => nil,
     },
     :htc_droid => {
       :user_agent => "Mozilla/5.0 (Linux; U; Android 2.2; nl-nl; Desire_A8181 Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
@@ -117,7 +125,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :android,
       :os_version => '2.2',
       :browser => :safari,
-      :major_browser_version => 4
+      :major_browser_version => 4,
+      :in_app_browser => nil,
     },
     :bb_torch => {
       :user_agent => "Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en) AppleWebKit/534.1+ (KHTML, Like Gecko) Version/6.0.0.141 Mobile Safari/534.1+",
@@ -130,7 +139,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :blackberry,
       :os_version => nil,
       :browser => :safari,
-      :major_browser_version => 6
+      :major_browser_version => 6,
+      :in_app_browser => nil,
     },
     :bb_8830 => {
       :user_agent => "BlackBerry8330/4.3.0 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/105",
@@ -143,7 +153,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :blackberry,
       :os_version => '4.3.0',
       :browser => nil,
-      :major_browser_version => nil
+      :major_browser_version => nil,
+      :in_app_browser => nil,
     },
     :kindle => {
       :user_agent => "Mozilla/4.0 (compatible; Linux 2.6.22) NetFront/3.4 Kindle/2.0 (screen 600x800)",
@@ -157,7 +168,8 @@ class BrowserSnifferTest < Minitest::Test
       :os_version => '2.6.22',
       :browser => nil,
       :browser_name => 'Kindle',
-      :major_browser_version => 2
+      :major_browser_version => 2,
+      :in_app_browser => nil,
     },
     :nokia_classic => {
       :user_agent => "Nokia3120Classic/2.0 (06.20) Profile/MIDP-2.1 Configuration/CLDC-1.1",
@@ -170,7 +182,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => nil,
       :os_version => nil,
       :browser => nil,
-      :major_browser_version => nil
+      :major_browser_version => nil,
+      :in_app_browser => nil,
     },
     :nokia_3200 => {
       :user_agent => "Nokia3200/1.0 (5.29) Profile/MIDP-1.0 Configuration/CLDC-1.0\nUP.Link/6.3.1.13.0",
@@ -183,7 +196,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => nil,
       :os_version => nil,
       :browser => nil,
-      :major_browser_version => nil
+      :major_browser_version => nil,
+      :in_app_browser => nil,
     },
     :att => {
       :user_agent => "Opera/9.51 Beta (Microsoft Windows; PPC; Opera Mobi/1718; U; en)",
@@ -196,7 +210,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => nil,
       :browser => :opera,
-      :major_browser_version => 9
+      :major_browser_version => 9,
+      :in_app_browser => nil,
     },
     :benq => {
       :user_agent => "BenQ-CF61/1.00/WAP2.0/MIDP2.0/CLDC1.0 UP.Browser/6.3.0.4.c.1.102 (GUI) MMP/2.0",
@@ -209,7 +224,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => nil,
       :os_version => nil,
       :browser => nil,
-      :major_browser_version => nil
+      :major_browser_version => nil,
+      :in_app_browser => nil,
     },
     :dell_streak => {
       :user_agent => "Mozilla/5.0 (Linux; U; Android 1.6; en-gb; Dell Streak Build/Donut AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/ 525.20.1",
@@ -221,7 +237,8 @@ class BrowserSnifferTest < Minitest::Test
       :major_engine_version => 528,
       :os => :android,
       :os_version => '1.6',
-      :major_browser_version => 3
+      :major_browser_version => 3,
+      :in_app_browser => nil,
     },
     :hp_ipaq => {
       :user_agent => "Mozilla/4.0 (compatible; MSIE 4.01; Windows CE; PPC; 240x320; HP iPAQ h6300)",
@@ -234,7 +251,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => 'CE',
       :browser => :ie,
-      :major_browser_version => 4
+      :major_browser_version => 4,
+      :in_app_browser => nil,
     },
     :nintendo_ds => {
       :user_agent => "Mozilla/4.0 (compatible; MSIE 6.0; Nitro) Opera 8.50 [en Mozilla/4.0 (compatible; MSIE 6.0; Nitro) Opera 8.50 [ja]",
@@ -247,7 +265,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => nil,
       :os_version => nil,
       :browser => :opera,
-      :major_browser_version => 8
+      :major_browser_version => 8,
+      :in_app_browser => nil,
     },
     :firefox_linux => {
       :user_agent => "Mozilla/5.0 (X11; U; Linux x86_64; de; rv:1.9.2.8) Gecko/20100723 Ubuntu/10.04 (lucid) Firefox/3.6.8",
@@ -260,7 +279,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :linux,
       :os_version => '10.04',
       :browser => :firefox,
-      :major_browser_version => 3
+      :major_browser_version => 3,
+      :in_app_browser => nil,
     },
     :safari_mac => {
       :user_agent => "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-ca) AppleWebKit/534.6+ (KHTML, like Gecko) Version/5.0 Safari/533.16",
@@ -273,7 +293,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :mac,
       :os_version => '10.6.3',
       :browser => :safari,
-      :major_browser_version => 5
+      :major_browser_version => 5,
+      :in_app_browser => nil,
     },
     :chrome_mac => {
       :user_agent => "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-US) AppleWebKit/534.6 (KHTML, like Gecko) Chrome/6.0.495.0 Safari/534.6",
@@ -286,7 +307,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :mac,
       :os_version => '10.6.3',
       :browser => :chrome,
-      :major_browser_version => 6
+      :major_browser_version => 6,
+      :in_app_browser => nil,
     },
     :chrome_win => {
       :user_agent => "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/533.4 (KHTML, like Gecko) Chrome/5.0.375.125 Safari/533.4",
@@ -299,7 +321,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => 'Vista',
       :browser => :chrome,
-      :major_browser_version => 5
+      :major_browser_version => 5,
+      :in_app_browser => nil,
     },
     :ie9 => {
       :user_agent => "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)",
@@ -312,7 +335,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => '7',
       :browser => :ie,
-      :major_browser_version => 9
+      :major_browser_version => 9,
+      :in_app_browser => nil,
     },
     :ie8 => {
       :user_agent => "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; MDDC)",
@@ -325,7 +349,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => '7',
       :browser => :ie,
-      :major_browser_version => 8
+      :major_browser_version => 8,
+      :in_app_browser => nil,
     },
     :ie7 => {
       :user_agent => "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; GTB6.4; .NET CLR 1.1.4322; FDM; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)",
@@ -338,7 +363,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => 'XP',
       :browser => :ie,
-      :major_browser_version => 7
+      :major_browser_version => 7,
+      :in_app_browser => nil,
     },
     :opera_win => {
       :user_agent => "Opera/9.80 (Windows NT 6.1; U; en) Presto/2.5.24 Version/10.54",
@@ -351,7 +377,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => '7',
       :browser => :opera,
-      :major_browser_version => 9
+      :major_browser_version => 9,
+      :in_app_browser => nil,
     },
     :wii => {
       :user_agent => "Opera/9.00 (Nintendo Wii; U; ; 1038-58; Wii Shop Channel/1.0; en)",
@@ -364,7 +391,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => nil,
       :os_version => 'Wii',
       :browser => :opera,
-      :major_browser_version => 9
+      :major_browser_version => 9,
+      :in_app_browser => nil,
     },
     :springboard_launched_ipod_browser => {
       :user_agent => "Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8J2",
@@ -378,7 +406,8 @@ class BrowserSnifferTest < Minitest::Test
       :os_version => '4.3.3',
       :browser => :safari,
       :browser_name => 'Mobile Safari',
-      :major_browser_version => 533
+      :major_browser_version => 533,
+      :in_app_browser => nil,
     },
     :ipod_os_4_3_3 => {
       :user_agent => "Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5",
@@ -391,7 +420,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :ios,
       :os_version => '4.3.3',
       :browser => :safari,
-      :major_browser_version => 5
+      :major_browser_version => 5,
+      :in_app_browser => nil,
     },
     :iphone_4S => {
       :user_agent => "Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3",
@@ -404,7 +434,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :ios,
       :os_version => '5.0',
       :browser => :safari,
-      :major_browser_version => 5
+      :major_browser_version => 5,
+      :in_app_browser => nil,
     },
     :iphone_ios7_webview => {
       :user_agent => "Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/11A465",
@@ -418,7 +449,8 @@ class BrowserSnifferTest < Minitest::Test
       :os_version => '7.0',
       :browser => :safari,
       :browser_name => 'Mobile Safari',
-      :major_browser_version => 537
+      :major_browser_version => 537,
+      :in_app_browser => nil,
     },
     :ipad_ios10_webview => {
       :user_agent => "Mozilla/5.0 (iPad; CPU OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) FxiOS/6.1 Mobile/14D27 Safari/602.4.6",
@@ -432,7 +464,8 @@ class BrowserSnifferTest < Minitest::Test
       :os_version => '10.2.1',
       :browser => :firefoxios,
       :browser_name => 'Mobile Firefox',
-      :major_browser_version => 6
+      :major_browser_version => 6,
+      :in_app_browser => nil,
     },
     :ipad_ios5 => {
       :user_agent => "Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3",
@@ -445,7 +478,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :ios,
       :os_version => '5.0',
       :browser => :safari,
-      :major_browser_version => 5
+      :major_browser_version => 5,
+      :in_app_browser => nil,
     },
     :excel_mac => {
       :user_agent => "Mozilla/5.0 (Macintosh; Intel Mac OS X) Excel/14.34.0",
@@ -461,7 +495,8 @@ class BrowserSnifferTest < Minitest::Test
       :os_version => nil,
       :browser => nil,
       :browser_name => 'Excel',
-      :major_browser_version => 14
+      :major_browser_version => 14,
+      :in_app_browser => nil,
     },
     :win7_ie11 => {
       :user_agent => "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko",
@@ -476,7 +511,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => "7",
       :browser => :ie,
-      :major_browser_version => 11
+      :major_browser_version => 11,
+      :in_app_browser => nil,
     },
     :win8_ie11 => {
       :user_agent => "Mozilla/5.0 (Windows NT 6.2; Trident/7.0; rv:11.0) like Gecko",
@@ -491,7 +527,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => "8",
       :browser => :ie,
-      :major_browser_version => 11
+      :major_browser_version => 11,
+      :in_app_browser => nil,
     },
     :win8_1_ie11 => {
       :user_agent => "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko",
@@ -506,7 +543,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => "8.1",
       :browser => :ie,
-      :major_browser_version => 11
+      :major_browser_version => 11,
+      :in_app_browser => nil,
     },
     :win10_ie11 => {
       :user_agent => "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; rv:11.0) like Gecko",
@@ -521,7 +559,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => "10",
       :browser => :ie,
-      :major_browser_version => 11
+      :major_browser_version => 11,
+      :in_app_browser => nil,
     },
     :win10_edge12 => {
       :user_agent => "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10136",
@@ -536,7 +575,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => "10",
       :browser => :edge,
-      :major_browser_version => 12
+      :major_browser_version => 12,
+      :in_app_browser => nil,
     },
     :daum => {
       :user_agent => "Mozilla/5.0 (compatible; MSIE or Firefox mutant;) Daum 4.1",
@@ -549,7 +589,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => nil,
       :os_version => nil,
       :browser => nil,
-      :major_browser_version => nil
+      :major_browser_version => nil,
+      :in_app_browser => nil,
     },
     :chromiumos_chrome => {
       :user_agent => "Mozilla/5.0 (X11; CrOS x86_64 10066.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36",
@@ -563,6 +604,7 @@ class BrowserSnifferTest < Minitest::Test
       :os_version => '10066.0.0',
       :browser => :chrome,
       :major_browser_version => 81,
+      :in_app_browser => nil,
     },
     :windows_phone_8_1_ie11 => {
       :user_agent => "Mozilla/5.0 (Mobile; Windows Phone 8.1; Android 4.0; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; Microsoft; " \
@@ -578,7 +620,8 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => "8.1",
       :browser => nil,
-      :major_browser_version => 11
+      :major_browser_version => 11,
+      :in_app_browser => nil,
     },
     :win10_ie11_in_ie7_compatibility_mode => {
       :user_agent => "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; " \
@@ -594,7 +637,43 @@ class BrowserSnifferTest < Minitest::Test
       :os => :windows,
       :os_version => "10",
       :browser => :ie,
-      :major_browser_version => 7
+      :major_browser_version => 7,
+      :in_app_browser => nil,
+    },
+    :facebook_in_app_browser => {
+      :user_agent => "Mozilla/5.0 (iPhone; CPU iPhone OS 15_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/19G82 " \
+       "[FBAN/FBIOS;FBDV/iPhone13,4;FBMD/iPhone;FBSN/iOS;FBSV/15.6.1;FBSS/3;FBID/phone;FBLC/en_US;FBOP/5]",
+      :form_factor => :handheld,
+      :ios? => true,
+      :ie11? => false,
+      :ie11_actual? => false,
+      :android? => false,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 605,
+      :os => :ios,
+      :os_version => "15.6.1",
+      :browser => :safari,
+      :major_browser_version => 605,
+      :in_app_browser => :facebook,
+    },
+    :instagram_in_app_browser => {
+      :user_agent => "Mozilla/5.0 (Linux; Android 12; SM-G970U1 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 " \
+        "Chrome/103.0.5060.129 Mobile Safari/537.36 Instagram 251.1.0.11.106 " \
+        "Android (31/12; 480dpi; 1080x2020; samsung; SM-G970U1; beyond0q; qcom; en_US; 396185280)",
+      :form_factor => :handheld,
+      :ios? => false,
+      :ie11? => false,
+      :ie11_actual? => false,
+      :android? => true,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 537,
+      :os => :android,
+      :os_version => "12",
+      :browser => :chrome,
+      :major_browser_version => 103,
+      :in_app_browser => :instagram,
     },
   }
 

@@ -89,6 +89,12 @@ class BrowserSniffer
 
 
 
+  def in_app_browser
+    in_app_browser_info[:type]
+  end
+
+
+
   def device
     device_info[:name]
   end
@@ -119,6 +125,10 @@ class BrowserSniffer
 
   def browser_info
     @browser_info ||= parse_user_agent_for(BrowserSniffer::REGEX_MAP[:browser])
+  end
+
+  def in_app_browser_info
+    @in_app_browser_info = parse_user_agent_for(BrowserSniffer::REGEX_MAP[:in_app_browser])
   end
 
   def engine_info
