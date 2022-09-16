@@ -157,6 +157,16 @@ class BrowserSniffer
         /(mosaic)[\/\s]((\d+)?[\w\.]+)/i # Mosaic
       ], [:name, :version, :major]
     ],
+    :in_app_browser => [
+      [
+        /FBAN\/FBIOS/,
+        /FB_IAB\/FB4A/,
+        /FBAN\/MessengerForiOS/,
+        /FB_IAB\/MESSENGER/,
+      ], [[:type, :facebook]], [
+        /Instagram/,
+      ], [[:type, :instagram]],
+    ],
     :device => [
       [
         # Shopify Mobile for iPhone
