@@ -45,6 +45,9 @@ class BrowserSniffer
   REGEX_MAP = {
     :browser => [
       [
+        # Shopify POS on POS Go
+        /WSC6X/i
+      ], [[:name, 'Shopify POS']],[
         # Shopify Mobile for iPhone or iPad
         %r{.*Shopify/\d+\s\((iPhone|iPad)\;\siOS\s[\d\.]+}i
       ], [[:name, 'Shopify Mobile']], [
@@ -169,6 +172,9 @@ class BrowserSniffer
     ],
     :device => [
       [
+        # Shopify POS Go
+        /WSC6X/i
+      ], [[:type, :handheld], [:name, 'Shopify POS Go']],[
         # Shopify Mobile for iPhone
         %r{.*Shopify Mobile/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPhone)([\d,]+)}i
       ], [[:type, :handheld], :model], [
@@ -295,6 +301,9 @@ class BrowserSniffer
     ],
     :os => [
       [
+        # Shopify Retail OS on POS Go
+        /WSC6X/i
+      ], [[:name, 'Shopify Retail OS']],[
         # Shopify Mobile for iOS
         %r{.*Shopify/\d+\s\((?:iPhone|iPad)\;\s(iOS)\s([\d\.]+)}i
       ], [[:type, :ios], :version, [:name, 'iOS']], [
