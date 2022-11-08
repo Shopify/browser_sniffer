@@ -45,9 +45,9 @@ class BrowserSniffer
   REGEX_MAP = {
     :browser => [
       [
-        # Shopify POS on POS Go
+        # Shopify POS Go
         /WSC6X/i
-      ], [[:name, 'Shopify POS']],[
+      ], [[:name, 'Shopify POS Go']],[
         # Shopify Mobile for iPhone or iPad
         %r{.*Shopify/\d+\s\((iPhone|iPad)\;\siOS\s[\d\.]+}i
       ], [[:name, 'Shopify Mobile']], [

@@ -7,7 +7,7 @@ describe "Shopify agents" do
     sniffer = BrowserSniffer.new(user_agent)
 
     assert_equal ({
-      name: 'Shopify POS',
+      name: 'Shopify POS Go',
     }), sniffer.browser_info
 
     assert_equal ({
