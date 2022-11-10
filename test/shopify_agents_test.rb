@@ -2,8 +2,26 @@ require "test_helper"
 
 describe "Shopify agents" do
 
-  it "Shopify POS Go can be sniffed" do
+  it "Shopify POS Go can be sniffed with old model name" do
     user_agent = "Mozilla/5.0 (Linux; Android 10; ETNA/29/BBPOS/WSC6X) Chrome"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify POS Go',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      name: 'Shopify Retail OS',
+    }), sniffer.os_info
+
+    assert_equal ({
+      type: :handheld,
+      name: 'Shopify POS Go',
+    }), sniffer.device_info
+  end
+
+  it "Shopify POS Go can be sniffed with new model name" do
+    user_agent = "Mozilla/5.0 (Linux; Android 10; ETNA/29/BBPOS/WTH1X) Chrome"
     sniffer = BrowserSniffer.new(user_agent)
 
     assert_equal ({
