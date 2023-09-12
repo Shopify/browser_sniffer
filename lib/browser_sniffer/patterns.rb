@@ -46,7 +46,7 @@ class BrowserSniffer
     :browser => [
       [
         # Shopify POS Go
-        /WSC6X|WTH1X/i
+        /WSC6X|WTH11/i
       ], [[:name, 'Shopify POS Go']],[
         # Shopify Mobile for iPhone or iPad
         %r{.*Shopify/\d+\s\((iPhone|iPad)\;\siOS\s[\d\.]+}i
@@ -173,7 +173,7 @@ class BrowserSniffer
     :device => [
       [
         # Shopify POS Go
-        /WSC6X|WTH1X/i
+        /WSC6X|WTH11/i
       ], [[:type, :handheld], [:name, 'Shopify POS Go']],[
         # Shopify Mobile for iPhone
         %r{.*Shopify Mobile/(?:iPhone\sOS|iOS)/[\d\.]+ \((iPhone)([\d,]+)}i
@@ -302,7 +302,7 @@ class BrowserSniffer
     :os => [
       [
         # Shopify Retail OS on POS Go
-        /WSC6X|WTH1X/i
+        /WSC6X|WTH11/i
       ], [[:name, 'Shopify Retail OS']],[
         # Shopify Mobile for iOS
         %r{.*Shopify/\d+\s\((?:iPhone|iPad)\;\s(iOS)\s([\d\.]+)}i
