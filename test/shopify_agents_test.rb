@@ -21,7 +21,7 @@ describe "Shopify agents" do
   end
 
   it "Shopify POS Go can be sniffed with new model name" do
-    user_agent = "Mozilla/5.0 (Linux; Android 10; ETNA/29/BBPOS/WTH1X) Chrome"
+    user_agent = "Mozilla/5.0 (Linux; Android 10; ETNA/29/BBPOS/WTH11) Chrome"
     sniffer = BrowserSniffer.new(user_agent)
 
     assert_equal ({
