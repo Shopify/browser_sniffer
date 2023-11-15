@@ -98,6 +98,9 @@ class BrowserSniffer
       ], [:name, :version, :major, [:type, :opera]], [
         /\s(opr)\/((\d+)?[\w\.]+)/i # Opera Webkit
       ], [[:name, 'Opera'], :version, :major, [:type, :opera]], [
+        /(SamsungBrowser)\/((\d+)?[\w\.-]+)/i, # Samsung Browser
+        %r{(SamsungBrowser)/((\d+)?[\w\.-]+)}i, # Samsung Browser
+      ], [:name, :version, :major, [:type, :samsung]], [
         # Mixed
         /(kindle)\/((\d+)?[\w\.]+)/i, # Kindle
         /(lunascape|maxthon|netfront|jasmine|blazer)[\/\s]?((\d+)?[\w\.]+)*/i, # Lunascape/Maxthon/Netfront/Jasmine/Blazer

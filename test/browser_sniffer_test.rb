@@ -675,6 +675,23 @@ class BrowserSnifferTest < Minitest::Test
       :major_browser_version => 103,
       :in_app_browser => :instagram,
     },
+    :samsung_browser => {
+      :user_agent => "Mozilla/5.0 (Linux; Android 13; SAMSUNG SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko) "\
+        "SamsungBrowser/23.0 Chrome/115.0.0.0 Mobile Safari/537.36",
+      :form_factor => :handheld,
+      :ios? => false,
+      :ie11? => false,
+      :ie11_actual? => false,
+      :android? => true,
+      :desktop? => false,
+      :engine => :webkit,
+      :major_engine_version => 537,
+      :os => :android,
+      :os_version => "13",
+      :browser => :samsung,
+      :major_browser_version => 23,
+      :in_app_browser => nil,
+    },
   }
 
   AGENTS.each do |agent, attributes|
