@@ -322,6 +322,9 @@ class BrowserSniffer
         # Shopify Mobile for iPhone or iPad
         %r{.*(Shopify Mobile)\/(?:iPhone\sOS|iOS)[\/\d\.]* \((iPhone|iPad|iPod).*\/([\d\.]+)\)}i
       ], [[:type, :ios], [:name, 'iOS'], :version], [
+        # Shopify Mobile for iPhone or iPad with build number
+        %r{.*(Shopify Mobile)\/(?:iPhone\sOS|iOS)[\/\d\.]* \((iPhone|iPad|iPod).*\/([\d\.]+) - Build [\d]*\)}i
+      ], [[:type, :ios], [:name, 'iOS'], :version], [
         # Shopify POS Next for iPhone or iPad
         %r{.*(Shopify POS Next|Shopify POS)\/(?:iPhone\sOS|iOS)[\/\d\.]* \((iPhone|iPad|iPod).*\/([\d\.]+)\)}i
       ], [[:type, :ios], [:name, 'iOS'], :version], [

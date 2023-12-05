@@ -79,6 +79,25 @@ describe "Shopify agents" do
       version: '12.0.0',
       name: 'iOS',
     }), sniffer.os_info
+
+    user_agent = "Shopify Mobile/iOS/9.108.0 (iPhone14,5 Simulator/com.shopify.Shopify/16.4 - Build 225)"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify Mobile',
+      version: '9.108.0',
+    }), sniffer.browser_info
+
+    assert_equal ({
+      type: :handheld,
+      model: '14,5',
+    }), sniffer.device_info
+
+    assert_equal ({
+      type: :ios,
+      version: '16.4',
+      name: 'iOS',
+    }), sniffer.os_info
   end
 
   it "Shopify Mobile on iPod touch can be sniffed" do
