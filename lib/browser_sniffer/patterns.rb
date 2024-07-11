@@ -116,7 +116,7 @@ class BrowserSniffer
         /(rekonq)\/?((\d+)[\w\.]+)*/i, # Rekonq
         /(flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt)\/((\d+)?[\w\.-]+)/i # Chromium/Flock/RockMelt/Midori/Epiphany/Silk/Skyfire/Bolt
       ], [:name, :version, :major], [
-        /(yabrowser)\/((\d+)?[\w\.]+)/i # Yandex
+        /(yabrowser)\/((\d+)?[\w\.]+)/i # Yandex Browser
       ], [[:name, 'Yandex Browser'], :version, :major, [:type, :yandex]], [
         /(comodo_dragon)\/((\d+)?[\w\.]+)/i # Comodo Dragon
       ], [[:name, 'Comodo Dragon'], :version, :major], [
