@@ -117,7 +117,7 @@ class BrowserSniffer
         /(flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt)\/((\d+)?[\w\.-]+)/i # Chromium/Flock/RockMelt/Midori/Epiphany/Silk/Skyfire/Bolt
       ], [:name, :version, :major], [
         /(yabrowser)\/((\d+)?[\w\.]+)/i # Yandex
-      ], [[:name, 'Yandex'], :version, :major], [
+      ], [[:name, 'Yandex Browser'], :version, :major, [:type, :yandex]], [
         /(comodo_dragon)\/((\d+)?[\w\.]+)/i # Comodo Dragon
       ], [[:name, 'Comodo Dragon'], :version, :major], [
         /(chromium)\/((\d+)?[\w\.-]+)/i, # Chromium
