@@ -92,7 +92,7 @@ class BrowserSniffer
       ], [[:name, 'Shopify Ping'], :version], [
         # Presto based
         /(opera\smini)\/((\d+)?[\w\.-]+)/i, # Opera Mini
-        /(opera\s[mobiletab]+).+:version\/((\d+)?[\w\.-]+)/i, # Opera Mobi/Tablet
+        /(opera\s(mobile|tab)).+:version\/((\d+)?[\w\.-]+)/i, # Opera Mobi/Tablet
         /(opera).+:version\/((\d+)?[\w\.]+)/i, # Opera > 9.80
         /(opera)[\/\s]+((\d+)?[\w\.]+)/i # Opera < 9.80
       ], [:name, :version, :major, [:type, :opera]], [
@@ -156,7 +156,7 @@ class BrowserSniffer
         /(uc\s?browser|polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf|word|excel)[\/\s]?((\d+)?[\w\.]+)/i, # UCBrowser/Polaris/Lynx/Dillo/iCab/Doris/Amaya/w3m/NetSurf/Word/Excel
         /(links)\s\(((\d+)?[\w\.]+)/i, # Links
         /(gobrowser)\/?((\d+)?[\w\.]+)*/i, # GoBrowser
-        /(ice\s?browser)\/v?((\d+)?[\w\._]+)/i, # ICE Browser
+        /(ice\s?browser)\/v?((\d+)?[\w\.]+)/i, # ICE Browser
         /(mosaic)[\/\s]((\d+)?[\w\.]+)/i # Mosaic
       ], [:name, :version, :major]
     ],
@@ -248,7 +248,7 @@ class BrowserSniffer
       ], [[:vendor, 'Sony'], :model, [:type, :console]], [
         /(sprint\s(\w+))/i # Sprint Phones
       ], [:vendor, :model, [:type, :handheld]], [
-        /(htc)[;_\s-]+([\w\s_]+(?=\))|\w+)*/i, # HTC
+        /(htc)[;_\s-]+([\w\s]+(?=\))|\w+)*/i, # HTC
         /(zte)-(\w+)*/i, # ZTE
         /(alcatel|geeksphone|huawei|lenovo|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]+)*/i # Alcatel/GeeksPhone/Huawei/Lenovo/Nexian/Panasonic/Sony
       ], [:vendor, [:model, lambda {|str| str && str.gsub(/_/, ' ') }], [:type, :handheld]], [
