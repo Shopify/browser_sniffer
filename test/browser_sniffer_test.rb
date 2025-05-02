@@ -675,6 +675,20 @@ class BrowserSnifferTest < Minitest::Test
       :major_browser_version => 103,
       :in_app_browser => :instagram,
     },
+    :yandex_mac => {
+      :user_agent => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 YaBrowser/24.4.5.506 Yowser/2.5 Safari/537.36",
+      :form_factor => :desktop,
+      :ios? => false,
+      :android? => false,
+      :desktop? => true,
+      :engine => :webkit,
+      :major_engine_version => 537,
+      :os => :mac,
+      :os_version => '10.15.7',
+      :browser => :yandex,
+      :major_browser_version => 24,
+      :in_app_browser => nil,
+    },
   }
 
   AGENTS.each do |agent, attributes|
