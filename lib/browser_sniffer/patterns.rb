@@ -90,6 +90,9 @@ class BrowserSniffer
         # Shopify Ping iOS
         %r{.*(Shopify Ping)\/(?:iPhone\sOS|iOS)\/([\d\.]+) \((iPhone|iPad|iPod)}i
       ], [[:name, 'Shopify Ping'], :version], [
+        # Shopify CLI
+        %r{.*(Shopify CLI); v=([\d\.]+)}i 
+      ], [[:name, 'Shopify CLI'], :version], [
         # Presto based
         /(opera\smini)\/((\d+)?[\w\.-]+)/i, # Opera Mini
         /(opera\s(mobile|tab)).+:version\/((\d+)?[\w\.-]+)/i, # Opera Mobi/Tablet
