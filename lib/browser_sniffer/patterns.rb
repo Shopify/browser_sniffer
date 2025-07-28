@@ -106,8 +106,6 @@ class BrowserSniffer
       ], [:name, :version, :major], [
         /(?:ms|\()(ie)\s((\d+)[\w\.]+)/i # Internet Explorer
       ], [:name, :version, :major, [:type, :ie]], [
-        /Edge\/(\d+).\d+/i #Edge
-      ], [:major, [:version, 10], [:name, 'Edge'], [:type, :edge]], [
         /Mozilla\/5.0.*Windows NT 6\.\d.*Trident\/7\.\d.*rv:(\d+)\.\d*/i #IE11 on Win7
       ], [:major, [:version, 7], [:name, 'Internet Explorer'], [:type, :ie]], [
         /Mozilla\/5.0.*Windows NT 10\.\d.*Trident\/7\.\d.*rv:(\d+)\.\d*.*like\sGecko/i #IE11 on Win10
@@ -120,6 +118,12 @@ class BrowserSniffer
       ], [[:name, 'Yandex Browser'], :version, :major, [:type, :yandex]], [
         /(comodo_dragon)\/((\d+)?[\w\.]+)/i # Comodo Dragon
       ], [[:name, 'Comodo Dragon'], :version, :major], [
+        /(vivaldi)\/((\d+)?[\w\.]+)/i # Vivaldi
+      ], [[:name, 'Vivaldi'], :version, :major, [:type, :vivaldi]], [
+        /(brave)\/((\d+)?[\w\.]+)/i # Brave
+      ], [[:name, 'Brave'], :version, :major, [:type, :brave]], [
+        /(?:Edge|Edg)\/(\d+).\d+/i # Edge (must come before Chrome patterns)
+      ], [:major, [:version, 10], [:name, 'Edge'], [:type, :edge]], [
         /(chromium)\/((\d+)?[\w\.-]+)/i, # Chromium
         /(chrome)\/v?((\d+)?[\w\.]+)/i # Chrome
       ], [:name, :version, :major, [:type, :chrome]], [
@@ -220,8 +224,59 @@ class BrowserSniffer
         # Shopify POS for Android (Native App)
         %r{.*\(.*(Android)\s[\d\.]+\;\s(.*)\sBuild/.*\)\sPOS.*[\d+\.]+}i,
       ], [[:type, :handheld], :model], [
+        # New tablet patterns (must come early to avoid generic matches)
+        # Xiaomi Tablets
+        /android.+;\s((?:redmi\s+pad|(?:redmi\s*)?mi[\s\-]*pad)[^;]*?)\s*build/i,
+        # Xiaomi tablet numeric codes (pad models like 24091RPADG)
+        /android.+;\s(\d{5}RPAD[A-Z])\s*build/i
+      ], [:model, [:vendor, 'Xiaomi'], [:type, :tablet]], [
+        # Huawei Tablets
+        /android.+;\s(mediapad[^;]*?)\s*build/i,
+        /android.+;\s((?:ag[rs][2356]?k?|bah[234]?|bg[2o]|bt[kv]|cmr|cpn|db[ry]2?|jdn2|got|kob2?k?|mon|pce|scm|sht?|[tw]gr|vrd)-[ad]?[lw][0125][09]b?)\s*build/i
+      ], [:model, [:vendor, 'Huawei'], [:type, :tablet]], [
+        # Honor Tablets
+        /android.+;\s((?:brt|eln|hey2?|gdi|jdn)-[^\s;]*)\s*build/i
+      ], [:model, [:vendor, 'Honor'], [:type, :tablet]], [
+        # OPPO Tablets
+        /android.+;\s(opd2\d{3}a?)\s*build/i
+      ], [:model, [:vendor, 'OPPO'], [:type, :tablet]], [
+        # Huawei Mobile (must come before generic patterns) 
+        /android.+;\s((?:hbp|alm|ane|art|ata|bla|col|cro|dub|ele|emm|eva|hma|hry|lya|mar|nce|pot|sne|vce|vne|yal)-[lx][0-9x]+)\s+build/i
+      ], [:model, [:vendor, 'Huawei'], [:type, :handheld]], [
+        # Lenovo tablets
+        /android.+;\s(let\d+[^;]*?)\s*build/i
+      ], [:model, [:vendor, 'Lenovo'], [:type, :tablet]], [
+        # Onyx e-reader devices
+        /android.+;\s(note(?:air|pro)[^;]*?)\s*build/i
+      ], [:model, [:vendor, 'Onyx'], [:type, :tablet]], [
+        # New mobile patterns (after tablets but before generic patterns)
+        # Xiaomi Mobile
+        /android.+;\s(poco[^;]*?)\s*build/i,
+        /android.+;\s((?:redmi[^;]*?|mi[\s\d][^;]*?))\s*build/i,
+        # Xiaomi numeric model codes (like 24091RPADG)
+        /android.+;\s(\d{5}[a-z]+[^;]*?)\s*build/i
+      ], [:model, [:vendor, 'Xiaomi'], [:type, :handheld]], [
+        # OnePlus Mobile
+        /android.+;\s(oneplus[^;]*?)\s*build/i
+      ], [:model, [:vendor, 'OnePlus'], [:type, :handheld]], [
+        # Realme Mobile
+        /android.+;\s(realme[^;]*?)\s*build/i
+      ], [:model, [:vendor, 'Realme'], [:type, :handheld]], [
+        # Vivo Mobile
+        /android.+;\s(vivo[^;]*?)\s*build/i
+      ], [:model, [:vendor, 'Vivo'], [:type, :handheld]], [
+        # OPPO Mobile
+        /android.+;\s(oppo[^;]*?)\s*build/i
+      ], [:model, [:vendor, 'OPPO'], [:type, :handheld]], [
+        # Google Pixel devices
+        /android.+;\s(pixel[\w\s]*pro[^;]*?)\s+build/i,
+        /android.+;\s(pixel[\w\s]*[^;]*?)\s+build/i
+      ], [:model, [:vendor, 'Google'], [:type, :handheld]], [
         /\((playbook);[\w\s\);-]+(rim)/i # PlayBook
       ], [:model, :vendor, [:type, :tablet]], [
+        # iPad with modern device identifier format (iPad15,x iPad16,x etc)
+        /\((ipad\d+,\d+);[^)]*\)/i
+      ], [[:model, 'iPad'], [:vendor, 'Apple'], [:name, :ipad], [:type, :tablet]], [
         /\((ipad);[\w\s\);-]+(apple)/i # iPad
       ], [:model, :vendor, [:name, :ipad], [:type, :tablet]], [
         /(hp).+(touchpad)/i, # HP TouchPad
@@ -229,6 +284,9 @@ class BrowserSniffer
         /\s(nook)[\w\s]+build\/(\w+)/i, # Nook
         /(dell)\s(strea[kpr\s\d]*[\dko])/i # Dell Streak
       ], [:vendor, :model, [:type, :tablet]], [
+        # iPhone with modern device identifier format (iPhone17,x etc)
+        /\((iphone\d+,\d+);[^)]*\)/i
+      ], [[:model, 'iPhone'], [:vendor, 'Apple'], [:name, :iphone], [:type, :handheld]], [
         /\((?:iphone|ipod(?: touch)?);.+(apple)/i # iPod Touch/iPhone
       ], [:model, :vendor, [:name, :iphone], [:type, :handheld]], [
         /(blackberry)[\s-]?(\w+)/i, # BlackBerry
@@ -242,28 +300,56 @@ class BrowserSniffer
       ], [[:vendor, 'Asus'], :model, [:type, :tablet]], [
         /(sony)\s(tablet\s[ps])/i # Sony Tablets
       ], [:vendor, :model, [:type, :tablet]], [
-        /(nintendo)\s([wids3u]+)/i # Nintendo
+        /(nintendo)\s+(switch|wii\s*u?|3?ds)/i # Nintendo (improved model parsing)
       ], [:vendor, :model, [:type, :console]], [
-        /((playstation)\s[3portablevi]+)/i # Playstation
+        # PlayStation Vita
+        /(playstation vita)\s+[\d\.]+/i
+      ], [[:model, 'PlayStation Vita'], [:vendor, 'Sony'], [:type, :console]], [
+        /((playstation)\s[3portablevi]+)/i # Playstation (generic)
       ], [[:vendor, 'Sony'], :model, [:type, :console]], [
+        # PlayStation 4
+        /(playstation 4)\s+[\d\.]+/i
+      ], [[:model, 'PlayStation 4'], [:vendor, 'Sony'], [:type, :console]], [
+        # PlayStation 5  
+        /playstation;\s+(playstation 5)\/[\d\.]+/i
+      ], [[:model, 'PlayStation 5'], [:vendor, 'Sony'], [:type, :console]], [
+        # Xbox Series X/S (Windows-based)
+        /windows nt .+;\s+xbox;\s+(xbox series [xs])/i
+      ], [[:model, 'Xbox Series X'], [:vendor, 'Microsoft'], [:type, :console]], [
+        # Xbox One (Windows-based)
+        /windows nt .+;\s+xbox_one_ed/i
+      ], [[:model, 'Xbox One'], [:vendor, 'Microsoft'], [:type, :console]], [
+        # Xbox One (Windows Phone-based)
+        /windows phone .+;\s+xbox;\s+(xbox one)/i
+      ], [:model, [:vendor, 'Microsoft'], [:type, :console]], [
+        # Xbox Series X/S (legacy format)
+        /\(xbox;\s+(xbox series [xs])\)/i
+      ], [:model, [:vendor, 'Microsoft'], [:type, :console]], [
+        # Xbox One (legacy format)
+        /\(xbox;\s+(xbox one)\)/i
+      ], [:model, [:vendor, 'Microsoft'], [:type, :console]], [
         /(sprint\s(\w+))/i # Sprint Phones
       ], [:vendor, :model, [:type, :handheld]], [
         /(htc)[;_\s-]+([\w\s]+(?=\))|\w+)*/i, # HTC
         /(zte)-(\w+)*/i, # ZTE
         /(alcatel|geeksphone|huawei|lenovo|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]+)*/i # Alcatel/GeeksPhone/Huawei/Lenovo/Nexian/Panasonic/Sony
       ], [:vendor, [:model, lambda {|str| str && str.gsub(/_/, ' ') }], [:type, :handheld]], [
+        # Modern Motorola devices (must come before generic Motorola pattern)
+        /android.+;\s(moto\s+[^;]*?)\s*build/i
+      ], [:model, [:vendor, 'Motorola'], [:type, :handheld]], [
         /\s((milestone|droid[2x]?))[globa\s]*\sbuild\//i, # Motorola
         /(mot)[\s-]?(\w+)*/i
       ], [[:vendor, 'Motorola'], :model, [:type, :handheld]], [
         /android.+\s((mz60\d|xoom[\s2]{0,2}))\sbuild\//i
       ], [[:vendor, 'Motorola'], :model, [:type, :tablet]], [
-        /android.+((sch-i[89]0\d|shw-m380s|gt-p\d{4}|gt-n8000|sgh-t8[56]9))/i
+        /android.+((sch-i[89]0\d|shw-m380s|sm-[ptx]\w{2,4}|gt-[pn]\d{2,4}|sgh-t8[56]9|nexus 10))/i
       ], [[:vendor, 'Samsung'], :model, [:type, :tablet]], [
         # Samsung
+        /android.+;\s(sm-s[^;)\s]*)/i, # Samsung Galaxy S-series phones  
         /((s[cgp]h-\w+|gt-\w+|galaxy\snexus))/i,
         /(sam[sung]*)[\s-]*(\w+-?[\w-]*)*/i,
         /sec-((sgh\w+))/i
-      ], [[:vendor, 'Samsung'], :model, [:type, :handheld]], [
+      ], [:model, [:vendor, 'Samsung'], [:type, :handheld]], [
         /(sie)-(\w+)*/i # Siemens
       ], [[:vendor, 'Siemens'], :model, [:type, :handheld]], [
         /(maemo|nokia).*(n900|lumia\s\d+)/i, # Nokia
@@ -273,9 +359,40 @@ class BrowserSniffer
       ], [[:vendor, 'Acer'], :model, [:type, :tablet]], [
         /android\s3\.[-\s\w;]{10}(lg?)-([06cv9]{3,4})/i # LG
       ], [[:vendor, 'LG'], :model, [:type, :tablet]], [
+        # Xiaomi Tablets (must come before generic mobile patterns)
+        /android.+;\s((?:red)?mi[\s\-]*pad[\w\s]*)\sbuild/i
+      ], [[:vendor, 'Xiaomi'], :model, [:type, :tablet]], [
+        # Huawei Tablets (must come before generic mobile patterns)
+        /android.+;\s(mediapad[\w\s]*)\sbuild/i,
+        /android.+;\s((?:ag[rs][2356]?k?|bah[234]?|bg[2o]|bt[kv]|cmr|cpn|db[ry]2?|jdn2|got|kob2?k?|mon|pce|scm|sht?|[tw]gr|vrd)-[ad]?[lw][0125][09]b?)\sbuild/i
+      ], [[:vendor, 'Huawei'], :model, [:type, :tablet]], [
+        # Honor Tablets (must come before generic mobile patterns)
+        /android.+;\s((?:brt|eln|hey2?|gdi|jdn)-a?[lnw]09|(?:ag[rm]3?|jdn2|kob2)-a?[lw]0[09]hn)\sbuild/i
+      ], [[:vendor, 'Honor'], :model, [:type, :tablet]], [
+        # OPPO Tablets (must come before generic mobile patterns)
+        /android.+;\s(opd2\d{3}a?)\sbuild/i
+      ], [[:vendor, 'OPPO'], :model, [:type, :tablet]], [
         /((nexus\s4))/i,
         /(lg)[-e;\s\/]+(\w+)*/i
       ], [[:vendor, 'LG'], :model, [:type, :handheld]], [
+        # Amazon Fire TV
+        /android.+;\s(aft[a-z0-9]+)(?:\s+build|\))/i
+      ], [:model, [:vendor, 'Amazon'], [:type, :console]], [
+        # Amazon Fire tablets  
+        /android.+;\s(kf[a-z]+[^;]*?)\s*build/i
+      ], [:model, [:vendor, 'Amazon'], [:type, :tablet]], [
+        # Apple TV
+        /appletv(\d+,\d+)\/([\d\.]+)/i  
+      ], [[:model, 'Apple TV'], [:vendor, 'Apple'], [:type, :console]], [
+        # Chromecast
+        /crkey\s+([^)]+)/i
+      ], [[:model, 'Chromecast'], [:vendor, 'Google'], [:type, :console]], [
+        # Google ADT (Android TV Developer)
+        /android.+;\s(adt-\d+)\s+build/i
+      ], [:model, [:vendor, 'Google'], [:type, :console]], [
+        # Roku devices
+        /roku(\w+)\/([^(]+)/i
+      ], [:model, [:vendor, 'Roku'], [:type, :console]], [
         /opera\smobi/i,
         /android/i
       ], [[:type, :handheld]], [
