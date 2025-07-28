@@ -837,6 +837,16 @@ describe "Shopify agents" do
     }), sniffer.browser_info
   end
 
+  it "Shopify CLI without version can be sniffed" do
+    user_agent = "Shopify CLI"
+    sniffer = BrowserSniffer.new(user_agent)
+
+    assert_equal ({
+      name: 'Shopify CLI',
+      version: nil,
+    }), sniffer.browser_info
+  end
+
   INCOMPATIBLE_USER_AGENTS = {
     'missing' => nil,
 
