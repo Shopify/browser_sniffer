@@ -1439,7 +1439,39 @@ class BrowserSnifferTest < Minitest::Test
       :device_vendor => 'Onyx',
       :device_name => 'NoteAir3C',
     },
+    :shopify_pos_android_native => {
+      :user_agent => "Mozilla/5.0 (Linux; Android 10; SM-G973U Build/QP1A.190711.020) POS 1.0",
+      :form_factor => :handheld,
+      :ios? => false,
+      :android? => true,
+      :desktop? => false,
+      :os => :android,
+      :os_version => "10",
+      :device_name => 'SM-G973U',
+    },
+    :shopify_pos_android_smartwebview => {
+      :user_agent => "Shopify POS/1.0 Mozilla/5.0 (Linux; Android 10; SM-G973U Build/QP1A.190711.020) POS 1.0",
+      :form_factor => :handheld,
+      :ios? => false,
+      :android? => true,
+      :desktop? => false,
+      :os => :android,
+      :os_version => "10",
+      :device_name => 'SM-G973U',
+    },
   }
+
+  def test_user_agent_length_is_capped
+    long_user_agent = "a" * 10_000
+    sniffer = BrowserSniffer.new(long_user_agent)
+    assert_equal BrowserSniffer::MAX_USER_AGENT_LENGTH, sniffer.user_agent.length
+  end
+
+  def test_pos_android_regex_does_not_backtrack_catastrophically
+    malicious_user_agent = ("(Android 1.0; a Build/" * 160) + "!"
+    time = Benchmark.realtime { BrowserSniffer.new(malicious_user_agent).form_factor }
+    assert time < 0.1, "Expected POS Android regex to reject crafted UA quickly, took #{time}s"
+  end
 
   AGENTS.each do |agent, attributes|
     define_method "test_sniff_#{agent}_correctly" do

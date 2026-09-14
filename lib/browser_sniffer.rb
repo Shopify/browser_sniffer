@@ -2,10 +2,12 @@ require "browser_sniffer/version"
 require "browser_sniffer/patterns"
 
 class BrowserSniffer
+  MAX_USER_AGENT_LENGTH = 512
+
   attr_reader :user_agent
 
   def initialize(user_agent)
-    @user_agent = user_agent
+    @user_agent = user_agent.to_s[0, MAX_USER_AGENT_LENGTH]
   end
 
   def ios?
