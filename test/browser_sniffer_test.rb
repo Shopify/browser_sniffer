@@ -1473,6 +1473,12 @@ class BrowserSnifferTest < Minitest::Test
     assert time < 0.1, "Expected POS Android regex to reject crafted UA quickly, took #{time}s"
   end
 
+  def test_ios_os_regex_does_not_backtrack_catastrophically
+    malicious_user_agent = "iphone os " + ("a" * 320) + "!"
+    time = Benchmark.realtime { BrowserSniffer.new(malicious_user_agent).os }
+    assert time < 0.1, "Expected iOS OS regex to reject crafted UA quickly, took #{time}s"
+  end
+
   AGENTS.each do |agent, attributes|
     define_method "test_sniff_#{agent}_correctly" do
       sniffer = BrowserSniffer.new(attributes[:user_agent])
