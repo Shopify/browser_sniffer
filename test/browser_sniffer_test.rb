@@ -1449,6 +1449,16 @@ class BrowserSnifferTest < Minitest::Test
       :os_version => "10",
       :device_name => 'SM-G973U',
     },
+    :shopify_pos_android_native_with_locale => {
+      :user_agent => "Mozilla/5.0 (Linux; U; Android 7.1.1; en-US; SM-T560NU Build/NMF26X) POS 2.4.10",
+      :form_factor => :handheld,
+      :ios? => false,
+      :android? => true,
+      :desktop? => false,
+      :os => :android,
+      :os_version => "7.1.1",
+      :device_name => 'SM-T560NU',
+    },
     :shopify_pos_android_smartwebview => {
       :user_agent => "Shopify POS/1.0 Mozilla/5.0 (Linux; Android 10; SM-G973U Build/QP1A.190711.020) POS 1.0",
       :form_factor => :handheld,
@@ -1459,7 +1469,21 @@ class BrowserSnifferTest < Minitest::Test
       :os_version => "10",
       :device_name => 'SM-G973U',
     },
+    :shopify_pos_android_smartwebview_with_locale => {
+      :user_agent => "Shopify POS/2.4.10 Mozilla/5.0 (Linux; U; Android 7.1.1; en-US; SM-T560NU Build/NMF26X) POS 2.4.10",
+      :form_factor => :handheld,
+      :ios? => false,
+      :android? => true,
+      :desktop? => false,
+      :os => :android,
+      :os_version => "7.1.1",
+      :device_name => 'SM-T560NU',
+    },
   }
+
+  def test_nil_user_agent_is_preserved
+    assert_nil BrowserSniffer.new(nil).user_agent
+  end
 
   def test_user_agent_length_is_capped
     long_user_agent = "a" * 10_000

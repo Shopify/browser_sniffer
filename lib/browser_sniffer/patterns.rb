@@ -222,10 +222,10 @@ class BrowserSniffer
         %r{.*Shopify POS\/[\d\.]+ \((iPod touch)\;.*Scale/([\d\.]+)}i,
       ], [[:type, :handheld], :scale], [
         # Shopify POS for Android (SmartWebView)
-        %r{.*Shopify\sPOS[^\(]*\((?:[^()]*)(Android)\s[\d\.]+\;\s([^;()]*)\sBuild/[^)]*\)\sPOS[^\d]*[\d+\.]+}i,
+        %r{.*Shopify\sPOS[^\(]*\((?:[^()]*)(Android)\s[\d\.]+\;\s(?:[^;()]*\;\s)*([^;()]*)\sBuild/[^)]*\)\sPOS[^\d]*[\d+\.]+}i,
       ], [[:type, :handheld], :model], [
         # Shopify POS for Android (Native App)
-        %r{.*\((?:[^()]*)(Android)\s[\d\.]+\;\s([^;()]*)\sBuild/[^)]*\)\sPOS[^\d]*[\d+\.]+}i,
+        %r{.*\((?:[^()]*)(Android)\s[\d\.]+\;\s(?:[^;()]*\;\s)*([^;()]*)\sBuild/[^)]*\)\sPOS[^\d]*[\d+\.]+}i,
       ], [[:type, :handheld], :model], [
         # New tablet patterns (must come early to avoid generic matches)
         # Xiaomi Tablets
