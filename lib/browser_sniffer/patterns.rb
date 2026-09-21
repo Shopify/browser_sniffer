@@ -222,10 +222,10 @@ class BrowserSniffer
         %r{.*Shopify POS\/[\d\.]+ \((iPod touch)\;.*Scale/([\d\.]+)}i,
       ], [[:type, :handheld], :scale], [
         # Shopify POS for Android (SmartWebView)
-        %r{.*Shopify\sPOS.*\(.*(Android)\s[\d\.]+\;\s(.*)\sBuild/.*\)\sPOS.*[\d+\.]+}i,
+        %r{.*Shopify\sPOS[^\(]*\((?:[^()]*)(Android)\s[\d\.]+\;\s(?:[^;()]*\;\s)*([^;()]*)\sBuild/[^)]*\)\sPOS[^\d]*[\d+\.]+}i,
       ], [[:type, :handheld], :model], [
         # Shopify POS for Android (Native App)
-        %r{.*\(.*(Android)\s[\d\.]+\;\s(.*)\sBuild/.*\)\sPOS.*[\d+\.]+}i,
+        %r{.*\((?:[^()]*)(Android)\s[\d\.]+\;\s(?:[^;()]*\;\s)*([^;()]*)\sBuild/[^)]*\)\sPOS[^\d]*[\d+\.]+}i,
       ], [[:type, :handheld], :model], [
         # New tablet patterns (must come early to avoid generic matches)
         # Xiaomi Tablets
@@ -496,7 +496,7 @@ class BrowserSniffer
         # BSD based
         /\s([frentopc-]{0,4}bsd|dragonfly)\s?([\w\.]+)*/i # FreeBSD/NetBSD/OpenBSD/PC-BSD/DragonFly
       ], [:name, :version],[
-        /(ip[honead]+)(?:.*os\s*([\w]+)*\slike\smac|;\sopera)/i # iOS
+        /(ip[honead]+)(?:.*os\s*([\w]+)\slike\smac|;\sopera)/i # iOS
       ], [[:name, 'iOS'], [:version, lambda {|str| str && str.gsub(/_/, '.') }], [:type, :ios]], [
         /(mac\sos\sx)\s?([\w\s\.]+\w)*/i # Mac OS
       ], [:name, [:version, lambda {|str| str && str.gsub(/_/, '.') }], [:type, :mac]], [

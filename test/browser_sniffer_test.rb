@@ -1439,7 +1439,69 @@ class BrowserSnifferTest < Minitest::Test
       :device_vendor => 'Onyx',
       :device_name => 'NoteAir3C',
     },
+    :shopify_pos_android_native => {
+      :user_agent => "Mozilla/5.0 (Linux; Android 10; SM-G973U Build/QP1A.190711.020) POS 1.0",
+      :form_factor => :handheld,
+      :ios? => false,
+      :android? => true,
+      :desktop? => false,
+      :os => :android,
+      :os_version => "10",
+      :device_name => 'SM-G973U',
+    },
+    :shopify_pos_android_native_with_locale => {
+      :user_agent => "Mozilla/5.0 (Linux; U; Android 7.1.1; en-US; SM-T560NU Build/NMF26X) POS 2.4.10",
+      :form_factor => :handheld,
+      :ios? => false,
+      :android? => true,
+      :desktop? => false,
+      :os => :android,
+      :os_version => "7.1.1",
+      :device_name => 'SM-T560NU',
+    },
+    :shopify_pos_android_smartwebview => {
+      :user_agent => "Shopify POS/1.0 Mozilla/5.0 (Linux; Android 10; SM-G973U Build/QP1A.190711.020) POS 1.0",
+      :form_factor => :handheld,
+      :ios? => false,
+      :android? => true,
+      :desktop? => false,
+      :os => :android,
+      :os_version => "10",
+      :device_name => 'SM-G973U',
+    },
+    :shopify_pos_android_smartwebview_with_locale => {
+      :user_agent => "Shopify POS/2.4.10 Mozilla/5.0 (Linux; U; Android 7.1.1; en-US; SM-T560NU Build/NMF26X) POS 2.4.10",
+      :form_factor => :handheld,
+      :ios? => false,
+      :android? => true,
+      :desktop? => false,
+      :os => :android,
+      :os_version => "7.1.1",
+      :device_name => 'SM-T560NU',
+    },
   }
+
+  def test_nil_user_agent_is_preserved
+    assert_nil BrowserSniffer.new(nil).user_agent
+  end
+
+  def test_user_agent_length_is_capped
+    long_user_agent = "a" * 10_000
+    sniffer = BrowserSniffer.new(long_user_agent)
+    assert_equal BrowserSniffer::MAX_USER_AGENT_LENGTH, sniffer.user_agent.length
+  end
+
+  def test_pos_android_regex_does_not_backtrack_catastrophically
+    malicious_user_agent = ("(Android 1.0; a Build/" * 160) + "!"
+    time = Benchmark.realtime { BrowserSniffer.new(malicious_user_agent).form_factor }
+    assert time < 0.1, "Expected POS Android regex to reject crafted UA quickly, took #{time}s"
+  end
+
+  def test_ios_os_regex_does_not_backtrack_catastrophically
+    malicious_user_agent = "iphone os " + ("a" * 320) + "!"
+    time = Benchmark.realtime { BrowserSniffer.new(malicious_user_agent).os }
+    assert time < 0.1, "Expected iOS OS regex to reject crafted UA quickly, took #{time}s"
+  end
 
   AGENTS.each do |agent, attributes|
     define_method "test_sniff_#{agent}_correctly" do
